@@ -28,7 +28,7 @@ img {
 }
 
 
-.rounded{
+.rounded {
   padding:2em;
   margin:1em;
   border-radius: 10px;
@@ -36,11 +36,15 @@ img {
   color: white;
 }
 
+.innerrounded{
+  padding:1em;
+}
+
 .btn:not(.btn-file) {
   border: 1px solid #ced4da;
   background: white;
-  margin:1em;
 }
+
 
 summary{
   outline:none;

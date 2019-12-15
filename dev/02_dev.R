@@ -10,6 +10,7 @@
 golem::add_module( name = "main" ) # Name of the module
 golem::add_module( name = "left" ) # Name of the module
 golem::add_module( name = "right" ) # Name of the module
+golem::add_module( name = "about" ) # Name of the module
 
 usethis::use_r("R6")
 usethis::use_r("triggers")
