@@ -1,0 +1,47 @@
+.split {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  overflow-x: hidden;
+  padding-top: 20px;
+}
+
+.left {
+  width: 50%;
+  left: 0;
+  background-color: #000000;
+}
+
+.right {
+  width: 50%;
+  right: 0;
+  background-color: #111111;
+}
+
+img {
+  position: absolute;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+  width: 75%;
+}
+
+
+.rounded{
+  padding:2em;
+  margin:1em;
+  border-radius: 10px;
+  border: 3px solid #FFFFFF;
+  color: white;
+}
+
+.btn:not(.btn-file) {
+  border: 1px solid #ced4da;
+  background: white;
+  margin:1em;
+}
+
+summary{
+  outline:none;
+}
