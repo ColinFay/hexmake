@@ -92,7 +92,7 @@ mod_left_ui <- function(id){
             fileInput(ns("file"), "Upload a file")
           ), 
           col_6(
-            "Emoji picker"
+            HTML("&nbsp;")
           )
         ), 
         fluidRow(
