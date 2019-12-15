@@ -21,6 +21,7 @@ golem_add_external_resources <- function(){
     golem::activate_js(),
     golem::favicon(),
     tags$title("hexmake"),
-    tags$link(rel="stylesheet", type="text/css", href="www/custom.css")
+    tags$link(rel="stylesheet", type="text/css", href="www/custom.css"), 
+    tags$script(src="www/script.js")
   )
 }
