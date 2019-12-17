@@ -15,9 +15,8 @@ knitr::opts_chunk$set(
 
 # hexmake
 
-<!-- badges: start -->
-<!-- badges: end -->
 
+Golem app available at https://connect.thinkr.fr/hexmake/
 
 
 Please note that the 'hexmake' project is released with a
