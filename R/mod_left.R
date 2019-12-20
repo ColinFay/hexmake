@@ -132,6 +132,22 @@ mod_left_ui <- function(id){
                 value = 1, 
                 step = 0.1
               )
+            ), 
+            col_6(
+              numericInput(
+                ns("asp"), 
+                "Aspect ratio", 
+                value = 1, 
+                step = 0.1
+              )
+            ),
+            col_6(
+              numericInput(
+                ns("dpi"), 
+                "Resolution", 
+                value = 600, 
+                step = 1
+              )
             )
           )
         )
@@ -387,6 +403,7 @@ mod_left_ui <- function(id){
 #' @rdname mod_left
 #' @export
 #' @keywords internal
+#' @importFrom magick image_read image_info image_extent image_write
 
 mod_left_server <- function(input, output, session, img){
   ns <- session$ns
@@ -418,7 +435,9 @@ mod_left_server <- function(input, output, session, img){
       "u_color", 
       "u_family",
       "u_size", 
-      "u_angle"
+      "u_angle", 
+      "asp", 
+      "dpi"
     ), function(x){
       observeEvent( input[[x]] , {
         img[[x]] <- input[[x]]
@@ -428,7 +447,18 @@ mod_left_server <- function(input, output, session, img){
   )
   
   observeEvent( input$file , {
-    img$subplot <- input$file$datapath
+    
+    image <- image_read(input$file$datapath)
+    size <- ifelse(
+      image_info(image)$width > image_info(image)$height, 
+      image_info(image)$width, 
+      image_info(image)$height
+    )
+    
+    image <- image_extent(image, sprintf("%sx%s", size, size))
+    x <- tempfile(fileext = "png")
+    image_write(image, x)
+    img$subplot <- x
     if (input$live) trigger("render")
   })
   

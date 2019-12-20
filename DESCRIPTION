@@ -12,7 +12,8 @@ Imports:
     htmltools,
     hexSticker,
     sysfonts,
-    pkgload
+    pkgload,
+    magick
 RoxygenNote: 6.1.1
 URL: https://github.com/colinfay/hexmake
 BugReports: https://github.com/colinfay/hexmake/issues

@@ -18,6 +18,7 @@ usethis::use_r("triggers")
 
 usethis::use_package( "hexSticker" ) # To call each time you need a new package
 usethis::use_package( "sysfonts" ) # To call each time you need a new package
+usethis::use_package( "magick" ) # To call each time you need a new package
 
 ## 2.3 Add tests
 
