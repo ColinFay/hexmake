@@ -961,16 +961,16 @@
       }
     },
     "ggimage": {
-      "Source": "CRAN",
-      "Repository": "https://cran.rstudio.com/",
-      "GithubRepo": null,
-      "GithubUsername": null,
-      "GithubRef": null,
-      "GithubSha1": null,
+      "Source": "github",
+      "Repository": null,
+      "GithubRepo": "ggimage",
+      "GithubUsername": "GuangchuangYu",
+      "GithubRef": "master",
+      "GithubSha1": "39882da6521f41869fbdf9deb3653692d48b81d9",
       "description": {
         "Package": "ggimage",
         "Title": "Use Image in 'ggplot2'",
-        "Version": "0.2.5",
+        "Version": "0.2.6",
         "Authors@R": "person(\"Guangchuang\", \"Yu\",\n                  email = \"guangchuangyu@gmail.com\",\n                  role = c(\"aut\", \"cre\"),\n                  comment = c(ORCID = \"0000-0002-6485-8781\"))",
         "Description": "Supports image files and graphic objects to be visualized in\n    'ggplot2' graphic system.",
         "Depends": "R (>= 3.4.0), ggplot2",
@@ -983,14 +983,23 @@
         "BugReports": "https://github.com/GuangchuangYu/ggimage/issues",
         "Encoding": "UTF-8",
         "LazyData": "true",
-        "RoxygenNote": "6.1.1",
+        "RoxygenNote": "7.0.2",
+        "Roxygen": "list(markdown = TRUE)",
+        "RemoteType": "github",
+        "RemoteHost": "api.github.com",
+        "RemoteRepo": "ggimage",
+        "RemoteUsername": "GuangchuangYu",
+        "RemoteRef": "master",
+        "RemoteSha": "39882da6521f41869fbdf9deb3653692d48b81d9",
+        "GithubRepo": "ggimage",
+        "GithubUsername": "GuangchuangYu",
+        "GithubRef": "master",
+        "GithubSHA1": "39882da6521f41869fbdf9deb3653692d48b81d9",
         "NeedsCompilation": "no",
-        "Packaged": "2019-11-29 08:23:50 UTC; ygc",
+        "Packaged": "2019-12-16 19:43:59 UTC; colin",
         "Author": "Guangchuang Yu [aut, cre] (<https://orcid.org/0000-0002-6485-8781>)",
         "Maintainer": "Guangchuang Yu <guangchuangyu@gmail.com>",
-        "Repository": "CRAN",
-        "Date/Publication": "2019-11-29 09:00:03 UTC",
-        "Built": "R 3.6.0; ; 2019-11-30 18:05:59 UTC; unix"
+        "Built": "R 3.6.1; ; 2019-12-16 19:43:59 UTC; unix"
       }
     },
     "ggplot2": {
@@ -1159,45 +1168,35 @@
       }
     },
     "golem": {
-      "Source": "github",
-      "Repository": null,
-      "GithubRepo": "golem",
-      "GithubUsername": "thinkr-open",
-      "GithubRef": "master",
-      "GithubSha1": "ecab7aaa7bfa854b2b1d940a4ccf17a656a9523a",
+      "Source": "CRAN",
+      "Repository": "https://cran.rstudio.com/",
+      "GithubRepo": null,
+      "GithubUsername": null,
+      "GithubRef": null,
+      "GithubSha1": null,
       "description": {
         "Package": "golem",
         "Title": "A Framework for Robust Shiny Applications",
-        "Version": "0.1.0.9001",
+        "Version": "0.1",
         "Authors@R": "\n    c(person(given = \"Vincent\",\n             family = \"Guyader\",\n             role = c(\"cre\", \"aut\"),\n             email = \"vincent@thinkr.fr\",\n             comment = c(ORCID = \"0000-0003-0671-9270\")),\n      person(given = \"Colin\",\n             family = \"Fay\",\n             role = \"aut\",\n             email = \"contact@colinfay.me\",\n             comment = c(ORCID = \"0000-0001-7343-1846\")),\n      person(given = \"Sébastien\",\n             family = \"Rochette\",\n             role = \"aut\",\n             email = \"sebastien@thinkr.fr\",\n             comment = c(ORCID = \"0000-0002-1565-9313\")),\n      person(given = \"Cervan\",\n             family = \"Girard\",\n             role = \"aut\",\n             email = \"cervan@thinkr.fr\",\n             comment = c(ORCID = \"0000-0002-4816-4624\")),\n      person(given = \"ThinkR\",\n             role = \"cph\"))",
         "Description": "An opinionated framework for building a\n    production-ready 'Shiny' application. This package contains a series\n    of tools for building a robust 'Shiny' application from start to\n    finish.",
         "License": "MIT + file LICENSE",
         "URL": "https://github.com/ThinkR-open/golem",
         "BugReports": "https://github.com/ThinkR-open/golem/issues",
         "Depends": "R (>= 3.0)",
-        "Imports": "attempt (>= 0.3.0), cli, crayon, desc, dockerfiler, DT, glue,\nhtmltools, pkgload, processx, remotes, rlang, roxygen2,\nrsconnect, rstudioapi, shiny, stats, stringr, testthat, tools,\nusethis, utils, yesno",
-        "Suggests": "spelling, covr, knitr, pkgdown, purrr, rcmdcheck, rmarkdown,\nwithr",
+        "Imports": "attempt, cli, crayon, desc, dockerfiler, DT, glue, htmltools,\npkgload, processx, remotes, rlang, roxygen2, rsconnect,\nrstudioapi, shiny, stats, stringr, testthat, tools, usethis,\nutils, yesno",
+        "Suggests": "covr, knitr, pkgdown, purrr, rcmdcheck, rmarkdown, withr",
         "VignetteBuilder": "knitr",
         "Encoding": "UTF-8",
         "LazyData": "true",
-        "Roxygen": "list(markdown = TRUE)",
         "RoxygenNote": "6.1.1",
-        "Language": "en-US",
-        "RemoteType": "github",
-        "RemoteHost": "api.github.com",
-        "RemoteRepo": "golem",
-        "RemoteUsername": "thinkr-open",
-        "RemoteRef": "master",
-        "RemoteSha": "ecab7aaa7bfa854b2b1d940a4ccf17a656a9523a",
-        "GithubRepo": "golem",
-        "GithubUsername": "thinkr-open",
-        "GithubRef": "master",
-        "GithubSHA1": "ecab7aaa7bfa854b2b1d940a4ccf17a656a9523a",
         "NeedsCompilation": "no",
-        "Packaged": "2019-12-04 08:53:46 UTC; colin",
+        "Packaged": "2019-07-19 09:00:08 UTC; Vincent",
         "Author": "Vincent Guyader [cre, aut] (<https://orcid.org/0000-0003-0671-9270>),\n  Colin Fay [aut] (<https://orcid.org/0000-0001-7343-1846>),\n  Sébastien Rochette [aut] (<https://orcid.org/0000-0002-1565-9313>),\n  Cervan Girard [aut] (<https://orcid.org/0000-0002-4816-4624>),\n  ThinkR [cph]",
         "Maintainer": "Vincent Guyader <vincent@thinkr.fr>",
-        "Built": "R 3.6.0; ; 2019-12-04 08:53:47 UTC; unix"
+        "Repository": "CRAN",
+        "Date/Publication": "2019-08-05 15:50:02 UTC",
+        "Built": "R 3.6.0; ; 2019-08-06 17:39:20 UTC; unix"
       }
     },
     "gridGraphics": {
@@ -1674,27 +1673,27 @@
         "Package": "magick",
         "Type": "Package",
         "Title": "Advanced Graphics and Image-Processing in R",
-        "Version": "2.0",
+        "Version": "2.2",
         "Authors@R": "person(\"Jeroen\", \"Ooms\", role = c(\"aut\", \"cre\"), email = \"jeroen@berkeley.edu\",\n    comment = c(ORCID = \"0000-0002-4035-0289\"))",
         "Description": "Bindings to 'ImageMagick': the most comprehensive open-source image\n    processing library available. Supports many common formats (png, jpeg, tiff,\n    pdf, etc) and manipulations (rotate, scale, crop, trim, flip, blur, etc).\n    All operations are vectorized via the Magick++ STL meaning they operate either\n    on a single frame or a series of frames for working with layers, collages,\n    or animation. In RStudio images are automatically previewed when printed to\n    the console, resulting in an interactive editing environment. The latest \n    version of the package includes a native graphics device for creating \n    in-memory graphics or drawing onto images using pixel coordinates.",
         "License": "MIT + file LICENSE",
-        "URL": "https://github.com/ropensci/magick#readme",
+        "URL": "https://docs.ropensci.org/magick (website)\nhttps://github.com/ropensci/magick (devel)",
         "BugReports": "https://github.com/ropensci/magick/issues",
         "SystemRequirements": "ImageMagick++: ImageMagick-c++-devel (rpm) or\nlibmagick++-dev (deb)",
         "VignetteBuilder": "knitr",
         "Imports": "Rcpp (>= 0.12.12), magrittr, curl",
         "LinkingTo": "Rcpp",
-        "Suggests": "av, spelling, jsonlite, methods, knitr, rmarkdown, rsvg,\nwebp, pdftools, ggplot2, raster, rgdal, gapminder, IRdisplay,\ntesseract (>= 2.0), gifski",
+        "Suggests": "av (>= 0.3), spelling, jsonlite, methods, knitr, rmarkdown,\nrsvg, webp, pdftools, ggplot2, raster, rgdal, gapminder,\nIRdisplay, tesseract (>= 2.0), gifski",
         "Encoding": "UTF-8",
-        "RoxygenNote": "6.1.0",
+        "RoxygenNote": "6.1.1",
         "Language": "en-US",
         "NeedsCompilation": "yes",
-        "Packaged": "2018-10-04 23:21:28 UTC; jeroen",
+        "Packaged": "2019-08-25 20:53:45 UTC; jeroen",
         "Author": "Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>)",
         "Maintainer": "Jeroen Ooms <jeroen@berkeley.edu>",
         "Repository": "CRAN",
-        "Date/Publication": "2018-10-05 10:00:03 UTC",
-        "Built": "R 3.6.0; x86_64-apple-darwin15.6.0; 2019-04-26 20:07:03 UTC; unix"
+        "Date/Publication": "2019-08-26 07:10:03 UTC",
+        "Built": "R 3.6.0; x86_64-apple-darwin15.6.0; 2019-08-27 13:16:29 UTC; unix"
       }
     },
     "magrittr": {
@@ -3164,13 +3163,16 @@
   },
   "files": {
     ".Rbuildignore": {
-      "checksum": "7e5e47463c5ed8abd5ff6fc64b60e5de"
+      "checksum": "9ab0cbdd9afeaa413d66310ffe02c454"
     },
     ".RData": {
-      "checksum": "07560e801eb4161844609a32831a430b"
+      "checksum": "9d3dcba182fa2344f5328fdccab7b786"
+    },
+    "70907374-ff1ae000-2008-11ea-94e5-9caeadcdaa0d.png": {
+      "checksum": "37cf1043e40e1684a2531976249338c3"
     },
     "app.R": {
-      "checksum": "ed14e0819cc48fbb76ebf05486e332f7"
+      "checksum": "c0a01dadd8aafe99f0fca48d440ad42a"
     },
     "baseplot.png": {
       "checksum": "e4a37087260b5e31b8356e18043c932d"
@@ -3179,13 +3181,13 @@
       "checksum": "20e86f8af6308e3f2e49f9fa5a498444"
     },
     "DESCRIPTION": {
-      "checksum": "a1713972d5fb97e5505bfcb192b50221"
+      "checksum": "aeed8289a8834fce8edc013d07b7172a"
     },
     "dev/01_start.R": {
       "checksum": "0c1be0c17fbab513c662b7f8b4957c77"
     },
     "dev/02_dev.R": {
-      "checksum": "47dc2d74cbc1b6556ac394ed73653135"
+      "checksum": "816c0b8df4953b7482495ee7b2ac5bac"
     },
     "dev/03_deploy.R": {
       "checksum": "6aacf0ef79d7bd5c52704e8bc7309e42"
@@ -3193,14 +3195,20 @@
     "dev/run_dev.R": {
       "checksum": "c8e331f43381f3583b0e986dc11c73d9"
     },
+    "inst/app/about.md": {
+      "checksum": "eb5eeed7215e5bdcedb270c2af499f99"
+    },
+    "inst/app/howto.md": {
+      "checksum": "5b441d5d77786ecc69923b619dbc56ba"
+    },
     "inst/app/www/custom.css": {
-      "checksum": "57cd8f372e552468ee3fd671f904f351"
+      "checksum": "b65f617904f03b93a9071b3c43dfa298"
     },
     "inst/app/www/favicon.ico": {
       "checksum": "81560d1b906a530c87fa0acbb2f5cca4"
     },
     "inst/app/www/script.js": {
-      "checksum": "f25c02ef09f9231883e54b6660f8c978"
+      "checksum": "0d005eefe7da53a6ab8390da551f38eb"
     },
     "inst/sign-of-the-horns.png": {
       "checksum": "ad099fa8dd82b1283af3fc96e0b0d1a0"
@@ -3213,6 +3221,9 @@
     },
     "man/includeRMarkdown.Rd": {
       "checksum": "6d20a35a55d94b87083d374bfefef9d3"
+    },
+    "man/mod_about.Rd": {
+      "checksum": "1df587804c29f92abc91f5b25449d2ae"
     },
     "man/mod_left.Rd": {
       "checksum": "e774df58b8a5a11737b1e7c4b333934b"
@@ -3227,7 +3238,7 @@
       "checksum": "76155c64d91502813964c73b26e93fb0"
     },
     "NAMESPACE": {
-      "checksum": "e8a4ee83c17ac3792499a9c06f980752"
+      "checksum": "b58cc777df23354402c0cb94ecb3acb9"
     },
     "packrat/desc/askpass": {
       "checksum": "94189e2591613758acecb70968843b7e"
@@ -3308,7 +3319,7 @@
       "checksum": "f763dc6613c65a6829ad16a3182e0d9d"
     },
     "packrat/desc/ggimage": {
-      "checksum": "80314d18a58d52f3618705a879e58a5a"
+      "checksum": "43066fa839c316882332a7903a48ff46"
     },
     "packrat/desc/ggplot2": {
       "checksum": "c16f37fa56f4f1bb705eb7dc84c0baa8"
@@ -3326,7 +3337,7 @@
       "checksum": "3239fcf5b116b176a3b7c12335047333"
     },
     "packrat/desc/golem": {
-      "checksum": "387f864ee3ba6185bbdaf0b9df6b0cb5"
+      "checksum": "30573b13ad09df4f0d17d6177f980ace"
     },
     "packrat/desc/gridGraphics": {
       "checksum": "a4c8efd98050d0027ebeb9d4893957d0"
@@ -3374,7 +3385,7 @@
       "checksum": "1d8e1c0d42bef1e01853cf2fe4222bc1"
     },
     "packrat/desc/magick": {
-      "checksum": "862312cee7a7720ebe2dd455f06a4008"
+      "checksum": "28940c0b43c51b019f0e3252e1210932"
     },
     "packrat/desc/magrittr": {
       "checksum": "e8675129e65235b7fb944a2a5635d1d0"
@@ -3536,7 +3547,7 @@
       "checksum": "42e12e4cc19c4759dca5c1d9df2df8d7"
     },
     "packrat/packrat.lock": {
-      "checksum": "bad6df37152b036e2b5e71e5388593a6"
+      "checksum": "431a05d9c8f3fc5f1b2bc5102120bdff"
     },
     "plop.png": {
       "checksum": "a7407fb9ec43d9cc21bc8c573164e34e"
@@ -3545,13 +3556,16 @@
       "checksum": "1e156aa47439b8d052462e30ad1b7aff"
     },
     "R/app_ui.R": {
-      "checksum": "4e67de9f3018a858c2a9355714552ed2"
+      "checksum": "7e6c019813487145ebb3a77f5e1bfd33"
     },
     "R/golem_utils_ui.R": {
       "checksum": "e36eeade55ec491490bba3eef11babdd"
     },
+    "R/mod_about.R": {
+      "checksum": "0caf792ae4ec6dc5a59df6a77f637b1c"
+    },
     "R/mod_left.R": {
-      "checksum": "aaacadb518571bbb490372dfb849bc22"
+      "checksum": "5a1a21fae881613557e5712998cc5aa3"
     },
     "R/mod_main.R": {
       "checksum": "9906d9ea0fea99633c4a8d8f57e36ee6"
@@ -3568,8 +3582,11 @@
     "R/triggers.R": {
       "checksum": "5c87bd0e3fbec3be866ee966e8181ad7"
     },
+    "README.md": {
+      "checksum": "71111b014c4c7ca214a591a4d276baed"
+    },
     "README.Rmd": {
-      "checksum": "a639ece2dc0a309ccc53f045870b5d33"
+      "checksum": "6a484a2f017aff99a70955d9d31f7ddc"
     }
   },
   "users": null
