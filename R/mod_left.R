@@ -403,7 +403,6 @@ mod_left_ui <- function(id){
 #' @rdname mod_left
 #' @export
 #' @keywords internal
-#' @importFrom magick image_read image_info image_extent image_write
 
 mod_left_server <- function(input, output, session, img){
   ns <- session$ns
@@ -448,16 +447,16 @@ mod_left_server <- function(input, output, session, img){
   
   observeEvent( input$file , {
     
-    image <- image_read(input$file$datapath)
+    image <- magick::image_read(input$file$datapath)
     size <- ifelse(
-      image_info(image)$width > image_info(image)$height, 
-      image_info(image)$width, 
-      image_info(image)$height
+      magick::image_info(image)$width > magick::image_info(image)$height, 
+      magick::image_info(image)$width, 
+      magick::image_info(image)$height
     )
     
-    image <- image_extent(image, sprintf("%sx%s", size, size))
+    image <- magick::image_extent(image, sprintf("%sx%s", size, size))
     x <- tempfile(fileext = "png")
-    image_write(image, x)
+    magick::image_write(image, x)
     img$subplot <- x
     if (input$live) trigger("render")
   })
