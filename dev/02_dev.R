@@ -9,6 +9,14 @@
 ## 
 golem::add_module( name = "main" ) # Name of the module
 golem::add_module( name = "left" ) # Name of the module
+golem::add_module( name = "pkg_name" ) # Name of the module
+golem::add_module( name = "image" ) # Name of the module
+golem::add_module( name = "hexa" ) # Name of the module
+golem::add_module( name = "spotlight" ) # Name of the module
+golem::add_module( name = "url" ) # Name of the module
+golem::add_module( name = "rendering" ) # Name of the module
+golem::add_module( name = "dl" ) # Name of the module
+golem::add_module( name = "restore" ) # Name of the module
 golem::add_module( name = "right" ) # Name of the module
 golem::add_module( name = "about" ) # Name of the module
 

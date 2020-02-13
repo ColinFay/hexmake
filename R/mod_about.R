@@ -16,22 +16,30 @@
 mod_about_ui <- function(id){
   ns <- NS(id)
   tagList(
-    fluidRow(
-      col_6(
-        actionButton(
-          ns("showhowto"), 
-          "How to use this app", 
-          class = "modbutton"
-        )
-      ), 
-      col_6(
-        actionButton(
-          ns("showmod"), 
-          "About this app", 
-          class = "modbutton"
+    tags$details(
+      tags$summary("About"), 
+      tags$div(
+        class = "innerrounded rounded",
+        align = "center",
+        fluidRow(
+          col_6(
+            actionButton(
+              ns("showhowto"), 
+              "How to use this app", 
+              class = "modbutton"
+            )
+          ), 
+          col_6(
+            actionButton(
+              ns("showmod"), 
+              "About this app", 
+              class = "modbutton"
+            )
+          )
         )
       )
     )
+    
   )
 }
 
@@ -85,10 +93,4 @@ mod_about_server <- function(input, output, session){
   })
   
 }
-
-## To be copied in the UI
-# 
-
-## To be copied in the server
-# 
 

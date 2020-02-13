@@ -18,10 +18,10 @@ golem_add_external_resources <- function(){
   )
  
   tags$head(
-    golem::activate_js(),
     golem::favicon(),
-    tags$title("hexmake"),
-    tags$link(rel="stylesheet", type="text/css", href="www/custom.css"), 
-    tags$script(src="www/script.js")
+    bundle_resources(
+      path = system.file('app/www', package = 'hexmake'),
+      app_title = 'hexmake'
+    )
   )
 }

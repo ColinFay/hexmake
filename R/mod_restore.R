@@ -1,0 +1,87 @@
+# Module UI
+  
+#' @title   mod_restore_ui and mod_restore_server
+#' @description  A shiny Module.
+#'
+#' @param id shiny id
+#' @param input internal
+#' @param output internal
+#' @param session internal
+#'
+#' @rdname mod_restore
+#'
+#' @keywords internal
+#' @export 
+#' @importFrom shiny NS tagList 
+mod_restore_ui <- function(id){
+  ns <- NS(id)
+  tagList(
+    tagList(
+      tags$details(
+        tags$summary("Restore the hex"),
+        tags$div(
+          class = "innerrounded rounded",
+          align = "center",
+          fluidRow(
+            col_4(
+              actionButton(
+                ns("restore"), 
+                "Restore to default"
+              )
+            ), 
+            col_4(
+              downloadButton(
+                ns("dl"), 
+                "Download current config"
+              )
+            ), 
+            col_4(
+              fileInput(
+                ns("file"), 
+                "Upload a config"
+                )
+            ) 
+          )
+        )
+      )
+    )
+  )
+}
+    
+# Module Server
+    
+#' @rdname mod_restore
+#' @export
+#' @keywords internal
+    
+mod_restore_server <- function(
+  input, 
+  output, 
+  session, 
+  img, 
+  r
+){
+  ns <- session$ns
+  
+  observeEvent( input$restore , {
+    img$restore()
+    trigger("render")
+  }, ignoreInit = TRUE)
+  
+  output$dl <- downloadHandler(
+    filename = function() {
+      paste('hex-', img$package, '.hex', sep='')
+    },
+    content = function(con) {
+      img$export(con)
+    }
+  )
+  
+  observeEvent( input$file , {
+    img$restore(
+      readRDS(input$file$datapath)
+    )
+    if (r$live) trigger("render")
+  })
+  
+}

@@ -1,5 +1,5 @@
 # Module UI
-  
+
 #' @title   mod_main_ui and mod_main_server
 #' @description  A shiny Module.
 #'
@@ -38,18 +38,29 @@ mod_main_ui <- function(id){
     )
   )
 }
-    
+
 # Module Server
-    
+
 #' @rdname mod_main
 #' @export
 #' @keywords internal
-    
-mod_main_server <- function(input, output, session){
+
+mod_main_server <- function(
+  input, 
+  output,
+  session
+){
   ns <- session$ns
+  
   img <- Hex$new()
+  r <- reactiveValues(
+    live = TRUE
+  )
+  
   init("render")
-  callModule(mod_left_server, "left_ui_1", img)
+  init("restore")
+  
+  callModule(mod_left_server, "left_ui_1", img, r)
   callModule(mod_right_server, "right_ui_1", img)
 }
-    
+

@@ -5,15 +5,15 @@ Hex <- R6::R6Class(
   "Hex", 
   public = list(
     subplot = NULL, 
-    s_x = 0.8, 
-    s_y = 0.75, 
-    s_width = 0.3,
-    s_height = 0.5, 
+    s_x = 1, 
+    s_y = 0.7, 
+    s_width = 0.4,
+    s_height = 1, 
     package = "hexmake", 
     p_x = 1, 
     p_y = 1.4, 
     p_color = "#FFFFFF",
-    p_family = "Aller_Rg", 
+    p_family = sysfonts::font_families()[1], 
     p_size = 8, 
     h_size = 1.2,
     h_fill = "#1881C2", 
@@ -28,16 +28,18 @@ Hex <- R6::R6Class(
     u_x = 1, 
     u_y = 0.08, 
     u_color = "black",
-    u_family = "Aller_Rg", 
+    u_family = sysfonts::font_families()[1], 
     u_size = 1.5, 
     u_angle = 30,
     white_around_sticker = FALSE,
     filename = paste0("package", ".png"), 
     asp = 1, 
-    dpi = 300,
+    dpi = 600,
     saved_path = NULL,
+    old = NULL,
     initialize = function(){
       self$subplot <- system.file("sign-of-the-horns.png", package = "hexmake")
+      self$old <- self$clone()
     }, 
     render = function(path){
       self$saved_path <- path
@@ -74,6 +76,21 @@ Hex <- R6::R6Class(
         asp = self$asp, 
         dpi = self$dpi
       )
+    }, 
+    restore = function(vals = self$old){
+      purrr::walk(
+        grep(
+          "enclos_env|^old$|restore|render|initialize|clone|export", 
+          names(vals), 
+          invert = TRUE, 
+          value = TRUE
+        ), ~ {
+          self[[.x]] <- vals[[.x]]
+        }
+      )
+    }, 
+    export = function(con){
+      saveRDS(self, con)
     }
   )
 )

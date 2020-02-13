@@ -35,6 +35,7 @@ mod_right_server <- function(input, output, session, img){
     img$render(file)
     list(src = file)
   })
+
 }
 
 
