@@ -87,41 +87,20 @@ mod_pkg_name_ui <- function(id){
   )
 }
     
-# Module Server
+#' # Module Server
+#'     
+#' #' @rdname mod_pkg_name
+#' #' @export
+#' #' @keywords internal
+#'     
+#' mod_pkg_name_server <- function(
+#'   input, 
+#'   output, 
+#'   session, 
+#'   img, 
+#'   r
+#' ){
+#'   ns <- session$ns
+#'   
+#' }
     
-#' @rdname mod_pkg_name
-#' @export
-#' @keywords internal
-    
-mod_pkg_name_server <- function(
-  input, 
-  output, 
-  session, 
-  img, 
-  r
-){
-  ns <- session$ns
-  
-  lapply(
-    c(
-      "package", 
-      "p_x", 
-      "p_y", 
-      "p_color", 
-      "p_family",
-      "p_size"
-    ), function(x){
-      observeEvent( input[[x]] , {
-        img[[x]] <- input[[x]]
-        if (r$live) trigger("render")
-      })
-    }
-  )
-}
-    
-## To be copied in the UI
-# 
-    
-## To be copied in the server
-# 
- 

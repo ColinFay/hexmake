@@ -2,12 +2,9 @@
 % Please edit documentation in R/mod_pkg_name.R
 \name{mod_pkg_name_ui}
 \alias{mod_pkg_name_ui}
-\alias{mod_pkg_name_server}
 \title{mod_pkg_name_ui and mod_pkg_name_server}
 \usage{
 mod_pkg_name_ui(id)
-
-mod_pkg_name_server(input, output, session, img, r)
 }
 \arguments{
 \item{id}{shiny id}

@@ -77,34 +77,21 @@ mod_hexa_ui <- function(id){
   )
 }
 
-# Module Server
-
-#' @rdname mod_hexa
-#' @export
-#' @keywords internal
-
-mod_hexa_server <- function(
-  input, 
-  output, 
-  session, 
-  img, 
-  r
-){
-  ns <- session$ns
-  
-  lapply(
-    c(
-      "h_size", 
-      "h_fill", 
-      "h_color"
-    ), function(x){
-      observeEvent( input[[x]] , {
-        img[[x]] <- input[[x]]
-        if (r$live) trigger("render")
-      })
-    }
-  )
-  
-}
+#' # Module Server
+#' 
+#' #' @rdname mod_hexa
+#' #' @export
+#' #' @keywords internal
+#' 
+#' mod_hexa_server <- function(
+#'   input, 
+#'   output, 
+#'   session, 
+#'   img, 
+#'   r
+#' ){
+#'   ns <- session$ns
+#'   
+#' }
 
 

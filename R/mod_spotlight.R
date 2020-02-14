@@ -74,36 +74,20 @@ mod_spotlight_ui <- function(id){
   )
 }
 
-# Module Server
-
-#' @rdname mod_spotlight
-#' @export
-#' @keywords internal
-
-mod_spotlight_server <- function(
-  input, 
-  output, 
-  session, 
-  img, 
-  r
-){
-  ns <- session$ns
-  
-  lapply(
-    c(
-      "spotlight", 
-      "l_x", 
-      "l_y", 
-      "l_width", 
-      "l_height", 
-      "l_alpha"
-    ), function(x){
-      observeEvent( input[[x]] , {
-        img[[x]] <- input[[x]]
-        if (r$live) trigger("render")
-      })
-    }
-  )
-  
-}
+#' # Module Server
+#' 
+#' #' @rdname mod_spotlight
+#' #' @export
+#' #' @keywords internal
+#' 
+#' mod_spotlight_server <- function(
+#'   input, 
+#'   output, 
+#'   session, 
+#'   img, 
+#'   r
+#' ){
+#'   ns <- session$ns
+#'   
+#' }
 

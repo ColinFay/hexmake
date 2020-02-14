@@ -18,7 +18,7 @@ mod_restore_ui <- function(id){
   tagList(
     tagList(
       tags$details(
-        tags$summary("Restore the hex"),
+        tags$summary("Manage hex config"),
         tags$div(
           class = "innerrounded rounded",
           align = "center",
@@ -27,12 +27,16 @@ mod_restore_ui <- function(id){
               actionButton(
                 ns("restore"), 
                 "Restore to default"
+              ) %>% tagAppendAttributes(
+                class = "padded"
               )
             ), 
             col_4(
               downloadButton(
                 ns("dl"), 
-                "Download current config"
+                "Download config"
+              ) %>% tagAppendAttributes(
+                class = "padded"
               )
             ), 
             col_4(

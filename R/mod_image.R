@@ -1,5 +1,5 @@
 # Module UI
-  
+
 #' @title   mod_image_ui and mod_image_server
 #' @description  A shiny Module.
 #'
@@ -25,7 +25,10 @@ mod_image_ui <- function(id){
             fileInput(ns("file"), "Upload a file")
           ), 
           col_6(
-            HTML("&nbsp;")
+            actionButton(
+              ns("manip"), 
+              "Modify the image"
+            )
           )
         ), 
         fluidRow(
@@ -82,13 +85,13 @@ mod_image_ui <- function(id){
     )
   )
 }
-    
+
 # Module Server
-    
+
 #' @rdname mod_image
 #' @export
 #' @keywords internal
-    
+
 mod_image_server <- function(
   input, 
   output, 
@@ -98,20 +101,18 @@ mod_image_server <- function(
 ){
   ns <- session$ns
   
-  lapply(
-    c(
+  bind_events(
+    ids = c(
       "s_x", 
       "s_y", 
       "s_width", 
       "s_height", 
       "asp", 
       "dpi"
-    ), function(x){
-      observeEvent( input[[x]] , {
-        img[[x]] <- input[[x]]
-        if (r$live) trigger("render")
-      })
-    }
+    ), 
+    img, 
+    r, 
+    parent_input = input
   )
   
   observeEvent( input$file , {
@@ -138,11 +139,19 @@ mod_image_server <- function(
     if (r$live) trigger("render")
   })
   
+  observeEvent(input$manip, {
+    showModal(
+      mod_manip_image_ui(ns("manip_image_ui_1"))
+    )
+    callModule(
+      mod_manip_image_server, 
+      "manip_image_ui_1", 
+      img, 
+      r
+    )
+  })
+  
+  
+  
+  
 }
-    
-## To be copied in the UI
-# 
-    
-## To be copied in the server
-# 
- 

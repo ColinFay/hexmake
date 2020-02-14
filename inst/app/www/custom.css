@@ -36,6 +36,10 @@ img {
   color: white;
 }
 
+.modalinner{
+  color: black;
+}
+
 .innerrounded{
   padding:1em;
 }
@@ -45,7 +49,6 @@ img {
   background: white;
 }
 
-
-summary {
-  outline:groove;
+.padded{
+  margin-top:1.7em;
 }

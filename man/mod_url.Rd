@@ -2,12 +2,9 @@
 % Please edit documentation in R/mod_url.R
 \name{mod_url_ui}
 \alias{mod_url_ui}
-\alias{mod_url_server}
 \title{mod_url_ui and mod_url_server}
 \usage{
 mod_url_ui(id)
-
-mod_url_server(input, output, session, img, r)
 }
 \arguments{
 \item{id}{shiny id}

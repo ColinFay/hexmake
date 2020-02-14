@@ -9,8 +9,10 @@
 ## 
 golem::add_module( name = "main" ) # Name of the module
 golem::add_module( name = "left" ) # Name of the module
+golem::add_module( name = "binder" ) # Name of the module
 golem::add_module( name = "pkg_name" ) # Name of the module
 golem::add_module( name = "image" ) # Name of the module
+golem::add_module( name = "manip_image" ) # Name of the module
 golem::add_module( name = "hexa" ) # Name of the module
 golem::add_module( name = "spotlight" ) # Name of the module
 golem::add_module( name = "url" ) # Name of the module

@@ -95,43 +95,20 @@ mod_url_ui <- function(id){
   )
 }
 
-# Module Server
-
-#' @rdname mod_url
-#' @export
-#' @keywords internal
-
-mod_url_server <- function(
-  input, 
-  output, 
-  session, 
-  img, 
-  r
-){
-  ns <- session$ns
-  
-  lapply(
-    c(
-      "url", 
-      "u_x", 
-      "u_y", 
-      "u_color", 
-      "u_family",
-      "u_size", 
-      "u_angle"
-    ), function(x){
-      observeEvent( input[[x]] , {
-        img[[x]] <- input[[x]]
-        if (r$live) trigger("render")
-      })
-    }
-  )
-  
-}
-
-## To be copied in the UI
-#
-
-## To be copied in the server
-# 
+#' # Module Server
+#' 
+#' #' @rdname mod_url
+#' #' @export
+#' #' @keywords internal
+#' 
+#' mod_url_server <- function(
+#'   input, 
+#'   output, 
+#'   session, 
+#'   img, 
+#'   r
+#' ){
+#'   ns <- session$ns
+#'   
+#' }
 

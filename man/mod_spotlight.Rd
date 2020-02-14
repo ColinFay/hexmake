@@ -2,12 +2,9 @@
 % Please edit documentation in R/mod_spotlight.R
 \name{mod_spotlight_ui}
 \alias{mod_spotlight_ui}
-\alias{mod_spotlight_server}
 \title{mod_spotlight_ui and mod_spotlight_server}
 \usage{
 mod_spotlight_ui(id)
-
-mod_spotlight_server(input, output, session, img, r)
 }
 \arguments{
 \item{id}{shiny id}

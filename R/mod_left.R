@@ -49,23 +49,95 @@ mod_left_server <- function(
 ){
   ns <- session$ns
   
-  callModule(mod_pkg_name_server, "pkg_name_ui_1", img, r)
+  callModule(
+    mod_binder_server, 
+    "pkg_name_ui_1", 
+    img, 
+    r, 
+    ids = c(
+      "package", 
+      "p_x", 
+      "p_y", 
+      "p_color", 
+      "p_family",
+      "p_size"
+    )
+  )
   
-  callModule(mod_image_server, "image_ui_1", img, r)
+  callModule(
+    mod_image_server, 
+    "image_ui_1", 
+    img, 
+    r
+  )
   
-  callModule(mod_hexa_server, "hexa_ui_1", img, r)
+  callModule(
+    mod_binder_server, 
+    "hexa_ui_1", 
+    img, 
+    r, 
+    ids = c(
+      "h_size", 
+      "h_fill", 
+      "h_color"
+    )
+  )
   
-  callModule(mod_spotlight_server, "spotlight_ui_1", img, r)
+  callModule(
+    mod_binder_server, 
+    "spotlight_ui_1", 
+    img, 
+    r, 
+    ids = c(
+      "spotlight", 
+      "l_x", 
+      "l_y", 
+      "l_width", 
+      "l_height", 
+      "l_alpha"
+    )
+  )
   
-  callModule(mod_url_server, "url_ui_1", img, r)
+  callModule(
+    mod_binder_server, 
+    "url_ui_1", 
+    img, 
+    r, 
+    ids = c(
+      "url", 
+      "u_x", 
+      "u_y", 
+      "u_color", 
+      "u_family",
+      "u_size", 
+      "u_angle"
+    )
+  )
   
-  callModule(mod_rendering_server, "rendering_ui_1", r)
   
-  callModule(mod_restore_server, "restore_ui_1", img, r)
+  callModule(
+    mod_rendering_server, 
+    "rendering_ui_1", 
+    r
+  )
   
-  callModule(mod_dl_server, "dl_ui_1", img)
+  callModule(
+    mod_restore_server, 
+    "restore_ui_1", 
+    img, 
+    r
+  )
   
-  callModule(mod_about_server, "about_ui_1")
+  callModule(
+    mod_dl_server, 
+    "dl_ui_1", 
+    img
+  )
+  
+  callModule(
+    mod_about_server, 
+    "about_ui_1"
+  )
   
   
 }

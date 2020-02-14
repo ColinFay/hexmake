@@ -2,12 +2,9 @@
 % Please edit documentation in R/mod_hexa.R
 \name{mod_hexa_ui}
 \alias{mod_hexa_ui}
-\alias{mod_hexa_server}
 \title{mod_hexa_ui and mod_hexa_server}
 \usage{
 mod_hexa_ui(id)
-
-mod_hexa_server(input, output, session, img, r)
 }
 \arguments{
 \item{id}{shiny id}
