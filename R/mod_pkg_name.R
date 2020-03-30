@@ -17,14 +17,14 @@ mod_pkg_name_ui <- function(id){
   ns <- NS(id)
   tagList(
     tags$details(
-      tags$summary("Manage Package name"),
+      tags$summary("Manage name"),
       tags$div(
         class = "innerrounded rounded",
         fluidRow(
           col_12(
             textInput(
               ns("package"), 
-              "Package name", 
+              "Name", 
               value = "hexmake"
             )
           ), 
