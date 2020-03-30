@@ -4,7 +4,7 @@
 \alias{run_app}
 \title{Run the Shiny Application}
 \usage{
-run_app(...)
+run_app(with_mongo = TRUE)
 }
 \description{
 Run the Shiny Application

@@ -22,6 +22,7 @@ golem_add_external_resources <- function(){
     bundle_resources(
       path = system.file('app/www', package = 'hexmake'),
       app_title = 'hexmake'
-    )
+    ), 
+    cicerone::use_cicerone()
   )
 }

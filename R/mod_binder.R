@@ -35,7 +35,7 @@ mod_binder_server <- function(
   ids
 ){
   ns <- session$ns
-  
+
   bind_events(
     ids, 
     img, 

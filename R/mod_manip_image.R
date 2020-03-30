@@ -19,36 +19,207 @@ mod_manip_image_ui <- function(
   ns <- NS(id)
   tagList(
     modalDialog(
+      easyClose = TRUE,
       size = "l",
       tagList(
         fluidRow(
           style = "padding:1em",
           col_6(
+            id = ns("effectslist"),
+            fluidRow(
+              HTML(
+                "For more info about these effects, see the <a target = '_blank' href = 'https://cran.r-project.org/web/packages/magick/vignettes/intro.html'>{magick}</a> package documentation."
+              )
+            ),
+            fluidRow(
+              h4("Image Effects")
+            ),
+            modalinner(
+              summary = "Despeckle", 
+              checkbox_id = "despeckle", 
+              parent_ns = ns, 
+              col_6(
+                numericInput(
+                  ns("times"),  
+                  "Time", 
+                  min = 0, 
+                  value = 0
+                )
+              )
+            ),
+            modalinner(
+              summary = "Reduce Noise", 
+              checkbox_id = "reducenoise", 
+              parent_ns = ns, 
+              col_6(
+                numericInput(
+                  ns("radius_reducenoise"), 
+                  "Radius", 
+                  min = 0, 
+                  value = 1
+                )
+              )
+            )
+            , 
+            modalinner(
+              summary = "Add Noise", 
+              checkbox_id = "noise", 
+              parent_ns = ns, 
+              col_12(
+                selectInput(
+                  ns("noisetype"), 
+                  "Noisetype", 
+                  selected = magick::noise_types()[2], 
+                  choices = magick::noise_types()
+                )
+              )
+            )
+            ,
+            modalinner(
+              summary = "Blur", 
+              checkbox_id = "blur", 
+              parent_ns = ns, 
+              col_6(
+                numericInput(
+                  ns("radius_blur"), 
+                  "Radius", 
+                  min = 0, 
+                  value = 1
+                )
+              ),
+              col_6(
+                numericInput(
+                  ns("sigma_blur"), 
+                  "Sigma", 
+                  min = 0, 
+                  value = 0.5
+                )
+              )
+            ),
+            modalinner(
+              summary = "Charcoal", 
+              checkbox_id = "charcoal", 
+              parent_ns = ns, 
+              col_6(
+                numericInput(
+                  ns("radius_charcoal"), 
+                  "Radius", 
+                  min = 0, 
+                  value = 1
+                )
+              ),
+              col_6(
+                numericInput(
+                  ns("sigma_charcoal"), 
+                  "Sigma", 
+                  min = 0, 
+                  value = 0.5
+                )
+              )
+            )
+            ,
+            modalinner(
+              summary = "oilpaint", 
+              checkbox_id = "oilpaint", 
+              parent_ns = ns, 
+              col_6(
+                numericInput(
+                  ns("oilpaint_radius"), 
+                  "Radius", 
+                  min = 0, 
+                  value = 1
+                )
+              )
+            )
+            ,
+            modalinner(
+              summary = "emboss", 
+              checkbox_id = "emboss", 
+              parent_ns = ns, 
+              col_6(
+                numericInput(
+                  ns("emboss_radius"), 
+                  "Radius", 
+                  min = 0, 
+                  value = 1
+                )
+              ),
+              col_6(
+                numericInput(
+                  ns("emboss_sigma"), 
+                  "Sigma", 
+                  min = 0, 
+                  value = 0.5
+                )
+              )
+            )
+            ,
+            modalinner(
+              summary = "implode", 
+              checkbox_id = "implode", 
+              parent_ns = ns, 
+              col_6(
+                numericInput(
+                  ns("implode_factor"), 
+                  "Factor", 
+                  min = 0, 
+                  value = 1
+                )
+              )
+            )
+            , 
+            modalinner(
+              summary = "negate", 
+              checkbox_id = "negate", 
+              parent_ns = ns
+            )
+            , 
+            fluidRow(
+              h4("Image Effects")
+            ),
+            modalinner(
+              summary = "rotate", 
+              checkbox_id = "rotate", 
+              parent_ns = ns, 
+              col_6(
+                sliderInput(
+                  ns("rotate_degrees"), 
+                  "Degrees", 
+                  min = 0,
+                  value = 0,
+                  max = 360
+                )
+              )
+            )
+            , 
+            modalinner(
+              summary = "trim", 
+              checkbox_id = "trim", 
+              parent_ns = ns, 
+              col_6(
+                numericInput(
+                  ns("trim_fuzz"), 
+                  "fuzz", 
+                  value = 0
+                )
+              )
+            )
+            ,
             fluidRow(
               tags$details(
-                tags$summary("Blur image"),
+                tags$summary("Flip flop image"),
                 tags$div(
                   class = "modalinner innerrounded rounded",
-                  col_12(
+                  col_6(
                     checkboxInput(
-                      ns("blur"), 
-                      "Blur"
-                    ), 
-                    col_6(
-                      numericInput(
-                        ns("radius_blur"), 
-                        "Radius", 
-                        min = 0, 
-                        value = 1
-                      )
-                    ),
-                    col_6(
-                      numericInput(
-                        ns("sigma_blur"), 
-                        "Sigma", 
-                        min = 0, 
-                        value = 0.5
-                      )
+                      ns("flip"), 
+                      "Flip"
+                    )
+                  ), 
+                  col_6(
+                    checkboxInput(
+                      ns("flop"), 
+                      "Flop"
                     )
                   )
                 )
@@ -57,69 +228,87 @@ mod_manip_image_ui <- function(
             , 
             fluidRow(
               tags$details(
-                tags$summary("Add Noise"),
+                tags$summary("Modulate"),
                 tags$div(
                   class = "modalinner innerrounded rounded",
                   col_12(
                     checkboxInput(
-                      ns("noise"), 
-                      "Noise"
-                    ), 
-                    col_12(
-                      selectInput(
-                        ns("noisetype"), 
-                        "Noisetype", 
-                        selected = magick::noise_types()[2], 
-                        choices = magick::noise_types()
-                      )
+                      ns("modulate"), 
+                      "Modulate"
                     )
-                    
+                  ), 
+                  col_4(
+                    numericInput(
+                      ns("brightness"), 
+                      "Brightness", 
+                      value = 100
+                    )
+                  ), 
+                  col_4(
+                    numericInput(
+                      ns("saturation"), 
+                      "Saturation", 
+                      value = 100
+                    )
+                  ), 
+                  col_4(
+                    numericInput(
+                      ns("hue"), 
+                      "Hue", 
+                      value = 100
+                    )
                   )
                 )
               )
             )
-            ,
+            , 
+            
             fluidRow(
               tags$details(
-                tags$summary("Charcoal image"),
+                tags$summary("Deskew image"),
                 tags$div(
                   class = "modalinner innerrounded rounded",
-                  col_12(
+                  col_6(
                     checkboxInput(
-                      ns("charcoal"), 
-                      "Charcoal"
-                    ), 
-                    col_6(
-                      numericInput(
-                        ns("radius_charcoal"), 
-                        "Radius", 
-                        min = 0, 
-                        value = 1
-                      )
-                    ),
-                    col_6(
-                      numericInput(
-                        ns("sigma_charcoal"), 
-                        "Sigma", 
-                        min = 0, 
-                        value = 0.5
-                      )
+                      ns("deskew"), 
+                      "Flip"
+                    )
+                  ), 
+                  col_6(
+                    numericInput(
+                      ns("deskew_threshold"), 
+                      "Threshold", 
+                      value = 40
                     )
                   )
                 )
               )
             )
-            
+            , 
+            fluidRow(
+              h4("Restore")
+            ),
+            col_12(
+              actionButton(
+                ns("restoreoriginal"), 
+                "Restore original image"
+              )
+            )
           ), 
           col_6(
-            imageOutput(ns("img"))
+            tags$div(
+              imageOutput(ns("img")) %>%
+                tagAppendAttributes(
+                  class = "innermanip"
+                )
+            )
           )
         )
       ),
       footer = tagList(
         modalButton("Cancel"),
         actionButton(
-          ns("ok"), 
+          ns("okokok"), 
           "Save this image"
         )
       )
@@ -145,21 +334,39 @@ mod_manip_image_server <- function(
   init("redraw")
   
   observeEvent( img$subplot , {
-    r$sub_file <- tempfile(fileext = ".png")
-    file.copy(
-      img$subplot, 
-      r$sub_file
+    whereami::cat_where(whereami::whereami())
+    
+    # r$sub_file is the one shown inside the modal
+    # Everytime subplot is changed, it need to be copied
+    if (is.null( r$sub_file )){
+      r$sub_file <- fs::file_temp(
+        tools::file_ext(
+          img$subplot
+        )
+      )
+    }
+    fs::file_copy(
+      img$subplot,
+      r$sub_file, 
+      TRUE
     )
-    r$sub_file_read <- magick::image_read(r$sub_file)
+    
   })
   
   
   output$img <- renderImage({
     watch("redraw")
+    whereami::cat_where(whereami::whereami())
+    # We draw r$sub_file, which contains either the original image
+    # or the one transformed by magick
     list(src = r$sub_file)
   }, deleteFile = FALSE)
   
   observeEvent( c(
+    input$times, 
+    input$despeckle,
+    input$reducenoise, 
+    input$radius_reducenoise,
     input$blur,
     input$radius_blur,
     input$sigma_blur,
@@ -167,45 +374,226 @@ mod_manip_image_server <- function(
     input$noisetype, 
     input$charcoal,
     input$radius_charcoal,
-    input$sigma_charcoal
+    input$sigma_charcoal, 
+    input$oilpaint,
+    input$oilpaint_radius, 
+    input$emboss, 
+    input$emboss_radius, 
+    input$emboss_sigma,
+    input$implode, 
+    input$implode_factor,
+    input$negate,
+    input$trim, 
+    input$trim_fuzz, 
+    input$rotate, 
+    input$rotate_degrees, 
+    input$flip, 
+    input$flop, 
+    input$modulate, 
+    input$brightness, 
+    input$saturation, 
+    input$hue, 
+    input$orient, 
+    input$deskew
   ), {
-    r$sub_file_read <- magick::image_read(img$subplot)
-    if (input$blur){
-      r$sub_file_read <- magick::image_blur(
-        r$sub_file_read, 
-        input$radius_blur, 
-        input$sigma_blur
-      )
-    }
-    if (input$noise){
-      r$sub_file_read <- magick::image_noise(
-        r$sub_file_read, 
-        input$noisetype
-      )
-    }
-    if (input$charcoal){
-      r$sub_file_read <- magick::image_charcoal(
-        r$sub_file_read,
-        input$radius_charcoal,
-        input$sigma_charcoal
-      )
-    }
-    magick::image_write(r$sub_file_read, r$sub_file)
+    whereami::cat_where(whereami::whereami())
+    withProgress(
+      message = "Rendering image"
+      , {
+        
+        # We read sub_file here as a magick object
+        r$sub_file_read <- magick::image_read(img$subplot)
+        
+        if (input$despeckle){
+          r$sub_file_read <- magick::image_despeckle(
+            r$sub_file_read, 
+            input$times
+          )
+        }
+        
+        if (input$reducenoise){
+          r$sub_file_read <- magick::image_reducenoise(
+            r$sub_file_read, 
+            input$radius_reducenoise
+          )
+        }
+        if (input$noise){
+          r$sub_file_read <- magick::image_noise(
+            r$sub_file_read, 
+            input$noisetype
+          )
+        }
+        if (input$blur){
+          r$sub_file_read <- magick::image_blur(
+            r$sub_file_read, 
+            input$radius_blur, 
+            input$sigma_blur
+          )
+        }
+        if (input$charcoal){
+          r$sub_file_read <- magick::image_charcoal(
+            r$sub_file_read,
+            input$radius_charcoal,
+            input$sigma_charcoal
+          )
+        }
+        
+        if (input$oilpaint){
+          r$sub_file_read <- magick::image_oilpaint(
+            r$sub_file_read,
+            input$oilpaint_radius
+          )
+        }
+        
+        if (input$emboss){
+          r$sub_file_read <- magick::image_emboss(
+            r$sub_file_read,
+            input$emboss_radius, 
+            input$emboss_sigma
+          )
+        }
+        
+        if (input$implode){
+          r$sub_file_read <- magick::image_implode(
+            r$sub_file_read,
+            input$implode_factor
+          )
+        }
+        
+        if (input$negate){
+          r$sub_file_read <- magick::image_negate(
+            r$sub_file_read
+          )
+        }
+        
+        if (input$trim){
+          r$sub_file_read <- magick::image_trim(
+            r$sub_file_read, 
+            input$trim_fuzz
+          )
+        }
+        
+        if (input$rotate){
+          r$sub_file_read <- magick::image_rotate(
+            r$sub_file_read,
+            input$rotate_degrees
+          )
+        }
+        if (input$flip){
+          r$sub_file_read <- magick::image_flip(
+            r$sub_file_read
+          )
+        }
+        if (input$flop){
+          r$sub_file_read <- magick::image_flop(
+            r$sub_file_read
+          )
+        }
+        if (input$modulate){
+          r$sub_file_read <- magick::image_modulate(
+            r$sub_file_read, 
+            input$brightness, 
+            input$saturation, 
+            input$hue
+          )
+        }
+        
+        if (input$deskew){
+          r$sub_file_read <- magick::image_deskew(
+            r$sub_file_read, 
+            input$deskew_threshold
+          )
+        }
+        
+        if (input$orient){
+          r$sub_file_read <- magick::image_orient(
+            r$sub_file_read, 
+            input$orient_orientation
+          )
+        }
+        
+        magick::image_write(
+          r$sub_file_read, 
+          r$sub_file
+        )
+        
+        assert_different(r, img)
+        trigger("redraw")
+        
+      })
+  })
+  
+  observeEvent( input$restoreoriginal , {
+    
+    # Restore to original is recopying 
+    # img$original_image to r$sub_file
+    fs::file_copy(
+      img$original_image,
+      r$sub_file, 
+      overwrite = TRUE
+    )
+    assert_different(r, img)
     trigger("redraw")
   })
   
-  
-  observeEvent( input$ok , {
-    img$subplot <- r$sub_file
+  observeEvent( input$okokok , {
     removeModal()
+  })
+  
+  observeEvent( c(
+    input$okokok, 
+    input$restoreoriginal
+  ), {
+    
+    whereami::cat_where(whereami::whereami())
+    for (i in c(
+      "times", 
+      "despeckle",
+      "reducenoise", 
+      "radius_reducenoise",
+      "blur",
+      "radius_blur",
+      "sigma_blur",
+      "noise",
+      "noisetype", 
+      "charcoal",
+      "radius_charcoal",
+      "sigma_charcoal", 
+      "oilpaint",
+      "oilpaint_radius", 
+      "emboss", 
+      "emboss_radius", 
+      "emboss_sigma",
+      "implode", 
+      "implode_factor",
+      "negate",
+      "trim", 
+      "trim_fuzz", 
+      "rotate", 
+      "rotate_degrees", 
+      "flip", 
+      "flop", 
+      "modulate", 
+      "brightness", 
+      "saturation", 
+      "hue", 
+      "orient", 
+      "deskew"
+    )){
+      updateCheckboxInput(
+        session, 
+        inputId = i,
+        value = FALSE
+      )
+    }
+    req(r$sub_file)
+    fs::file_copy(
+      img$subplot, 
+      r$sub_file,
+      TRUE
+    )
     trigger("render")
   })
   
 }
-
-## To be copied in the UI
-# 
-
-## To be copied in the server
-# 
 

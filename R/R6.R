@@ -37,14 +37,59 @@ Hex <- R6::R6Class(
     dpi = 600,
     saved_path = NULL,
     old = NULL,
+    original_image = NULL,
     initialize = function(){
-      self$subplot <- system.file("sign-of-the-horns.png", package = "hexmake")
+      
+      # At launch, the original image is the horn emoji, we copy it 
+      # as original image
+      horns <- system.file("sign-of-the-horns.png", package = "hexmake")
+      
+      self$original_image <- fs::file_temp(
+        tools::file_ext(
+          horns
+        )
+      )
+      
+      fs::file_copy(
+        horns, 
+        self$original_image 
+      )
+      
+      # We also add a copy of this as subplot, the image that is actually
+      # drawn on the hex
+      self$subplot <- fs::file_temp(
+        ext = tools::file_ext(
+          horns
+        )
+      )
+      
+      fs::file_copy(
+        horns, 
+        self$subplot
+      )
+      
       self$old <- self$clone()
+      
+      attempt::stop_if(
+        self$original_image == self$subplot
+      )
+      
     }, 
-    render = function(path){
-      self$saved_path <- path
+    self_ = function(){
+      return(self)
+    },
+    new_original_image = function(path){
+      self$original_image <- path
+    },
+    render = function(con){
+      if (missing(con)){
+        self$saved_path <- tempfile(fileext = ".png")
+      } else {
+        self$saved_path <- con
+      }
+
       sticker(
-        subplot = self$subplot, 
+        subplot =  self$subplot, 
         s_x = self$s_x,
         s_y = self$s_y,
         s_width = self$s_width,
@@ -72,15 +117,16 @@ Hex <- R6::R6Class(
         u_size = self$u_size,
         u_angle = self$u_angle,
         white_around_sticker = self$white_around_sticker,
-        filename = path, 
+        filename = self$saved_path, 
         asp = self$asp, 
         dpi = self$dpi
       )
+      self$saved_path
     }, 
-    restore = function(vals = self$old){
+    restore = function(vals = self$old, subplot = self$subplot){
       purrr::walk(
         grep(
-          "enclos_env|^old$|restore|render|initialize|clone|export", 
+          "enclos_env|^old$|restore|render|initialize|clone|export|self_|new_original_image", 
           names(vals), 
           invert = TRUE, 
           value = TRUE
@@ -88,9 +134,13 @@ Hex <- R6::R6Class(
           self[[.x]] <- vals[[.x]]
         }
       )
+      self$subplot <- subplot
     }, 
     export = function(con){
-      saveRDS(self, con)
+      saveRDS(list(
+        self = self, 
+        img = self$subplot
+      ), con)
     }
   )
 )

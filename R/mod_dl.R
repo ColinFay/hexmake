@@ -53,6 +53,7 @@ mod_dl_server <- function(
       paste('hex-', img$package, '.png', sep='')
     },
     content = function(con) {
+      whereami::cat_where(whereami::whereami())
       img$render(con)
     }
   )

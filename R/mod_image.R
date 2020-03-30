@@ -22,12 +22,21 @@ mod_image_ui <- function(id){
         class = "innerrounded rounded",
         fluidRow(
           col_6(
-            fileInput(ns("file"), "Upload a file")
+            tags$p("Upload an image")
+          ),
+          col_6(
+            tags$p("Modify your image")
+          ),
+          col_6(
+            fileInput(ns("file"), NULL, accept = c(".png", ".jpg", ".jpeg")) %>%
+              tagAppendAttributes(
+                id = ns("uploaddiv")
+              )
           ), 
           col_6(
             actionButton(
               ns("manip"), 
-              "Modify the image"
+              "Modify"
             )
           )
         ), 
@@ -116,10 +125,13 @@ mod_image_server <- function(
   )
   
   observeEvent( input$file , {
+    whereami::cat_where(whereami::whereami())
     
+    # Square the image
     image <- magick::image_read(
       input$file$datapath
     )
+    
     size <- ifelse(
       magick::image_info(image)$width > magick::image_info(image)$height, 
       magick::image_info(image)$width, 
@@ -130,28 +142,43 @@ mod_image_server <- function(
       image, 
       sprintf("%sx%s", size, size)
     )
-    x <- tempfile(fileext = "png")
+    
+    # Save the squared image as the new original image
     magick::image_write(
       image, 
-      x
+      img$original_image
     )
-    img$subplot <- x
+    fs::file_copy(
+      img$original_image, 
+      img$subplot, 
+      TRUE
+    )
+    fs::file_copy(
+      img$original_image, 
+      r$sub_file, 
+      TRUE
+    )
+    
+    assert_different(r, img)
     if (r$live) trigger("render")
+    trigger("restore_modifs_checks")
+    trigger("redraw")
   })
   
   observeEvent(input$manip, {
+    
+    whereami::cat_where(whereami::whereami())
+    
     showModal(
       mod_manip_image_ui(ns("manip_image_ui_1"))
     )
-    callModule(
-      mod_manip_image_server, 
-      "manip_image_ui_1", 
-      img, 
-      r
-    )
   })
   
-  
-  
+  callModule(
+    mod_manip_image_server, 
+    "manip_image_ui_1", 
+    img, 
+    r
+  )
   
 }

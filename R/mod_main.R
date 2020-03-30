@@ -35,6 +35,10 @@ mod_main_ui <- function(id){
       tags$i(
         class="arrow rightarrow"
       )
+    ), 
+    tags$div(
+      class = "pouet",
+      actionButton("log", "log")
     )
   )
 }
@@ -59,6 +63,7 @@ mod_main_server <- function(
   
   init("render")
   init("restore")
+  init("restore_modifs_checks")
   
   callModule(mod_left_server, "left_ui_1", img, r)
   callModule(mod_right_server, "right_ui_1", img)

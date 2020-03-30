@@ -16,7 +16,12 @@
 mod_right_ui <- function(id){
   ns <- NS(id)
   tagList(
-    imageOutput(ns("img"))
+    tags$div(
+      imageOutput(ns("img")) %>%
+        tagAppendAttributes(
+          class = "imgleft"
+        )
+    )
   )
 }
 
@@ -30,10 +35,9 @@ mod_right_server <- function(input, output, session, img){
   ns <- session$ns
   
   output$img <- renderImage({
+    whereami::cat_where(whereami::whereami())
     watch("render")
-    file <- tempfile(fileext = ".png")
-    img$render(file)
-    list(src = file)
+    list(src = img$render())
   })
 
 }

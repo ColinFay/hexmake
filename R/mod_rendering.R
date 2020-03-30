@@ -64,10 +64,12 @@ mod_rendering_server <- function(
   ns <- session$ns
   
   observeEvent( input$render , {
+    whereami::cat_where(whereami::whereami())
     trigger("render")
   })
   
   observeEvent( input$live , {
+    whereami::cat_where(whereami::whereami())
     if (input$live){
       golem::invoke_js("disable", sprintf("#%s", ns("render")))
     } else {

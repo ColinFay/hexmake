@@ -20,16 +20,23 @@ mod_left_ui <- function(id){
     tags$div(
       class = "rounded",
       h2("Build your own hex sticker"),
+      h3("Hex design"),
       mod_pkg_name_ui(ns("pkg_name_ui_1")),
       mod_image_ui(ns("image_ui_1")),
       mod_hexa_ui(ns("hexa_ui_1")),
       mod_spotlight_ui(ns("spotlight_ui_1")),
       mod_url_ui(ns("url_ui_1")), 
-      mod_rendering_ui(ns("rendering_ui_1")), 
+      h3("Save/Restore hex"),
       mod_restore_ui(ns("restore_ui_1")),
+      if ( golem::get_golem_options("with_mongo") ){
+        mod_my_hexes_ui(ns("my_hexes_ui_1"))    
+      },
       mod_dl_ui(ns("dl_ui_1")), 
-      mod_about_ui(ns("about_ui_1"))
-      
+      h3("Config"),
+      mod_rendering_ui(ns("rendering_ui_1")), 
+      h3("About"),
+      mod_about_ui(ns("about_ui_1")), 
+      mod_guided_tour_ui(ns("guided_tour_ui_1"))
     )
   )
 }
@@ -137,6 +144,18 @@ mod_left_server <- function(
   callModule(
     mod_about_server, 
     "about_ui_1"
+  )
+  
+  callModule(
+    mod_guided_tour_server, 
+    "guided_tour_ui_1", 
+    r
+  )
+  
+  callModule(
+    mod_my_hexes_server, 
+    "my_hexes_ui_1", 
+    img
   )
   
   

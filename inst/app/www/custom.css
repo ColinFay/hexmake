@@ -1,3 +1,9 @@
+h3{
+  font-size: 20px;
+  border-bottom:2px solid white;
+  width: 100%;
+}
+
 .split {
   height: 100%;
   position: fixed;
@@ -19,7 +25,11 @@
   background-color: #111111;
 }
 
-img {
+.innermanip > img{
+  width: inherit;
+}
+
+.imgleft > img {
   position: absolute;
   top: 50%; 
   left: 50%; 
@@ -51,4 +61,16 @@ img {
 
 .padded{
   margin-top:1.7em;
+}
+
+#driver-highlighted-element-stage{
+  border: 2px solid white;
+}
+
+.gridimg {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+    grid-auto-rows: minmax(100px, auto);
+    justify-content: center;
 }

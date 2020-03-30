@@ -1,0 +1,6 @@
+# Variable dictionaries 
+
+- img$subplot: image that is actually drawn on the hex
+- img$original_image: image that has been uploaded / horns
+- r$sub_file: image that is inside the modal
+- r$sub_file: magick object of the read image

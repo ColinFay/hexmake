@@ -68,6 +68,7 @@ mod_restore_server <- function(
   ns <- session$ns
   
   observeEvent( input$restore , {
+    whereami::cat_where(whereami::whereami())
     img$restore()
     trigger("render")
   }, ignoreInit = TRUE)
@@ -77,14 +78,15 @@ mod_restore_server <- function(
       paste('hex-', img$package, '.hex', sep='')
     },
     content = function(con) {
+      whereami::cat_where(whereami::whereami())
       img$export(con)
     }
   )
   
   observeEvent( input$file , {
-    img$restore(
-      readRDS(input$file$datapath)
-    )
+    whereami::cat_where(whereami::whereami())
+    hxs <- readRDS(input$file$datapath)
+    img$restore(hxs$self, hxs$img)
     if (r$live) trigger("render")
   })
   

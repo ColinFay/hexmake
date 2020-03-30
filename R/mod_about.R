@@ -67,6 +67,7 @@ mod_about_server <- function(input, output, session){
   }
   
   observeEvent(input$showhowto, {
+    whereami::cat_where(whereami::whereami())
     showModal(howtomodal())
   })
   
@@ -85,10 +86,12 @@ mod_about_server <- function(input, output, session){
   }
   
   observeEvent(input$showmod, {
+    whereami::cat_where(whereami::whereami())
     showModal(aboutmodal())
   })
   
   observeEvent( input$ok , {
+    whereami::cat_where(whereami::whereami())
     removeModal()
   })
   

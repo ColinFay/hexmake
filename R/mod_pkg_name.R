@@ -28,22 +28,26 @@ mod_pkg_name_ui <- function(id){
               value = "hexmake"
             )
           ), 
-          col_6(
-            numericInput(
-              ns("p_x"),
-              "x position for package name", 
-              value = 1, 
-              step = 0.1
+          tags$div(
+            id = ns("xy"),
+            col_6(
+              numericInput(
+                ns("p_x"),
+                "x position for package name", 
+                value = 1, 
+                step = 0.1
+              )
+            ),
+            col_6(
+              numericInput(
+                ns("p_y"), 
+                "y position for package name", 
+                value = 1.4, 
+                step = 0.1
+              )
             )
-          ),
-          col_6(
-            numericInput(
-              ns("p_y"), 
-              "y position for package name", 
-              value = 1.4, 
-              step = 0.1
-            )
-          ), 
+          )
+          , 
           col_6(
             tags$label(
               `for` = "p_color", 
@@ -71,7 +75,10 @@ mod_pkg_name_ui <- function(id){
               "Font family for package name", 
               selected = sysfonts::font_families()[1], 
               choices = sysfonts::font_families()
-            )
+            ) %>%
+              tagAppendAttributes(
+                id = ns("fonfam")
+              )
           ),
           col_6(
             numericInput(
