@@ -7,6 +7,7 @@ output: github_document
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
+  eval = FALSE,
   comment = "#>",
   fig.path = "man/figures/README-",
   out.width = "100%"
@@ -28,10 +29,10 @@ docker run -v $(pwd)/inst/db:/data/db -p 12334:27017 -d --name mongohexmas mongo
 Then set a series of env variables with the infos (or use the one from your prod env).
 
 ```{r}
-Sys.setenv("MONGOPORT", 27017)
-Sys.setenv("MONGOURL", "127.0.0.1")
-Sys.setenv("MONGODB", "hex")
-Sys.setenv("MONGOCOLLECTION", "make")
+Sys.setenv("MONGOPORT" = 27017)
+Sys.setenv("MONGOURL" : "127.0.0.1")
+Sys.setenv("MONGODB" = "hex")
+Sys.setenv("MONGOCOLLECTION" = "make")
 ```
 
 And run 
