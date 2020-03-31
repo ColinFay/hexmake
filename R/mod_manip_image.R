@@ -397,7 +397,7 @@ mod_manip_image_server <- function(
     input$brightness, 
     input$saturation, 
     input$hue, 
-    input$orient, 
+    input$orient
     #input$deskew
   ), {
     whereami::cat_where(whereami::whereami())
