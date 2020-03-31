@@ -1,3 +1,4 @@
+#' @importFrom shiny observeEvent
 bind_events <- function(
   ids, 
   img, 

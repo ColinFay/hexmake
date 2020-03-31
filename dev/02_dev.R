@@ -31,6 +31,7 @@ usethis::use_r("triggers")
 golem::add_fct("mongo")
 golem::add_fct("assert")
 
+
 ## 2.2 Add dependencies
 
 attachment::att_from_rscripts() %>%

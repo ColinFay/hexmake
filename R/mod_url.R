@@ -12,12 +12,14 @@
 #'
 #' @keywords internal
 #' @export 
-#' @importFrom shiny NS tagList 
+
+#' @importFrom shiny NS tagList tags fluidRow textInput numericInput tagAppendAttributes selectInput
+#' @importFrom sysfonts font_families
 mod_url_ui <- function(id){
   ns <- NS(id)
   tagList(
     tags$details(
-      tags$summary("Manage URL"),
+      summary("Manage URL"),
       tags$div(
         class = "innerrounded rounded",
         fluidRow(
@@ -69,8 +71,8 @@ mod_url_ui <- function(id){
             selectInput(
               ns("u_family"), 
               "Font family for url",
-              selected = sysfonts::font_families()[1], 
-              choices = sysfonts::font_families()
+              selected = font_families()[1], 
+              choices = font_families()
             )
           ),
           col_6(

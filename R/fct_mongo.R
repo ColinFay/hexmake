@@ -1,3 +1,4 @@
+#' @importFrom mongolite mongo gridfs
 launch_mongo <- function(
   session = getDefaultReactiveDomain(), 
   collection, 
@@ -5,7 +6,7 @@ launch_mongo <- function(
   url, 
   port
 ){
-  session$userData$mongo <- mongolite::mongo(
+  session$userData$mongo <- mongo(
     collection =  collection, 
     db = db, 
     url = sprintf(
@@ -15,7 +16,7 @@ launch_mongo <- function(
     )
   )
   
-  session$userData$gridfs <- mongolite::gridfs(
+  session$userData$gridfs <- gridfs(
     db = db, 
     url = sprintf(
       "mongodb://%s:%s", 

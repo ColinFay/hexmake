@@ -1,7 +1,11 @@
-#' @import hexSticker
-#' @import R6
-#' @import ggplot2
-Hex <- R6::R6Class(
+#' @importFrom  hexSticker sticker
+#' @importFrom R6 R6Class
+#' @importFrom sysfonts font_families
+#' @importFrom fs file_temp file_copy
+#' @importFrom tools file_ext
+#' @importFrom attempt stop_if
+#' @importFrom purrr walk
+Hex <- R6Class(
   "Hex", 
   public = list(
     subplot = NULL, 
@@ -45,7 +49,7 @@ Hex <- R6::R6Class(
       horns <- system.file("sign-of-the-horns.png", package = "hexmake")
       
       self$original_image <- fs::file_temp(
-        tools::file_ext(
+        file_ext(
           horns
         )
       )
@@ -83,7 +87,7 @@ Hex <- R6::R6Class(
     },
     render = function(con){
       if (missing(con)){
-        self$saved_path <- tempfile(fileext = ".png")
+        self$saved_path <- file_temp(ext = ".png")
       } else {
         self$saved_path <- con
       }
@@ -124,7 +128,7 @@ Hex <- R6::R6Class(
       self$saved_path
     }, 
     restore = function(vals = self$old, subplot = self$subplot){
-      purrr::walk(
+      walk(
         grep(
           "enclos_env|^old$|restore|render|initialize|clone|export|self_|new_original_image", 
           names(vals), 

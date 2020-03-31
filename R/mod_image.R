@@ -12,12 +12,12 @@
 #'
 #' @keywords internal
 #' @export 
-#' @importFrom shiny NS tagList 
+#' @importFrom shiny NS tagList  tags  fluidRow fileInput tagAppendAttributes actionButton numericInput
 mod_image_ui <- function(id){
   ns <- NS(id)
   tagList(
     tags$details(
-      tags$summary("Manage image"),
+      summary("Manage image"),
       tags$div(
         class = "innerrounded rounded",
         fluidRow(
@@ -28,7 +28,11 @@ mod_image_ui <- function(id){
             tags$p("Modify your image")
           ),
           col_6(
-            fileInput(ns("file"), NULL, accept = c(".png", ".jpg", ".jpeg")) %>%
+            fileInput(
+              ns("file"), 
+              NULL, 
+              accept = c(".png", ".jpg", ".jpeg")
+              ) %>%
               tagAppendAttributes(
                 id = ns("uploaddiv")
               )
@@ -100,7 +104,10 @@ mod_image_ui <- function(id){
 #' @rdname mod_image
 #' @export
 #' @keywords internal
-
+#' @importFrom whereami cat_where whereami
+#' @importFrom magick image_read image_info image_extent image_write
+#' @importFrom fs file_copy
+#' @importFrom shiny observeEvent showModal callModule
 mod_image_server <- function(
   input, 
   output, 

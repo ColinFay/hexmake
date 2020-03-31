@@ -12,12 +12,12 @@
 #'
 #' @keywords internal
 #' @export 
-#' @importFrom shiny NS tagList 
+#' @importFrom shiny NS tagList tags fluidRow numericInput tagAppendAttributes
 mod_hexa_ui <- function(id){
   ns <- NS(id)
   tagList(
     tags$details(
-      tags$summary("Manage Hexagon"),
+      summary("Manage Hexagon"),
       tags$div(
         class = "innerrounded rounded",
         fluidRow(

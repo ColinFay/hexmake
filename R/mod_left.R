@@ -14,6 +14,7 @@
 #' @export 
 #' @importFrom shiny NS tagList 
 #' @import magrittr
+#' @importFrom golem get_golem_options
 mod_left_ui <- function(id){
   ns <- NS(id)
   tagList(
@@ -46,7 +47,7 @@ mod_left_ui <- function(id){
 #' @rdname mod_left
 #' @export
 #' @keywords internal
-
+#' @importFrom shiny callModule
 mod_left_server <- function(
   input, 
   output, 

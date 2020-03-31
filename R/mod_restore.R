@@ -12,13 +12,13 @@
 #'
 #' @keywords internal
 #' @export 
-#' @importFrom shiny NS tagList 
+#' @importFrom shiny NS tagList tags fluidRow actionButton tagAppendAttributes downloadButton
 mod_restore_ui <- function(id){
   ns <- NS(id)
   tagList(
     tagList(
       tags$details(
-        tags$summary("Manage hex config"),
+        h4("Manage hex config"),
         tags$div(
           class = "innerrounded rounded",
           align = "center",
@@ -58,6 +58,8 @@ mod_restore_ui <- function(id){
 #' @export
 #' @keywords internal
     
+#' @importFrom shiny observeEvent downloadHandler
+#' @importFrom whereami cat_where whereami
 mod_restore_server <- function(
   input, 
   output, 
@@ -68,7 +70,7 @@ mod_restore_server <- function(
   ns <- session$ns
   
   observeEvent( input$restore , {
-    whereami::cat_where(whereami::whereami())
+    cat_where(whereami())
     img$restore()
     trigger("render")
   }, ignoreInit = TRUE)
@@ -78,13 +80,13 @@ mod_restore_server <- function(
       paste('hex-', img$package, '.hex', sep='')
     },
     content = function(con) {
-      whereami::cat_where(whereami::whereami())
+      cat_where(whereami())
       img$export(con)
     }
   )
   
   observeEvent( input$file , {
-    whereami::cat_where(whereami::whereami())
+    cat_where(whereami())
     hxs <- readRDS(input$file$datapath)
     img$restore(hxs$self, hxs$img)
     if (r$live) trigger("render")

@@ -12,12 +12,13 @@
 #'
 #' @keywords internal
 #' @export 
-#' @importFrom shiny NS tagList 
+#' @importFrom shiny NS tagList tags  fluidRow actionButton
+#' @importFrom whereami cat_where whereami
 mod_about_ui <- function(id){
   ns <- NS(id)
   tagList(
     tags$details(
-      tags$summary("About"), 
+      summary("About"), 
       tags$div(
         class = "innerrounded rounded",
         align = "center",
@@ -48,7 +49,8 @@ mod_about_ui <- function(id){
 #' @rdname mod_about
 #' @export
 #' @keywords internal
-
+#' @importFrom whereami cat_where whereami
+#' @importFrom shiny modalDialog includeMarkdown tagList actionButton observeEvent showModal
 mod_about_server <- function(input, output, session){
   ns <- session$ns
   

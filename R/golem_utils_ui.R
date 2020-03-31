@@ -15,7 +15,7 @@ list_to_li <- function(list, class = NULL){
     res <- lapply(res, function(x) tagAppendAttributes(x, class = class))
     tagList(res)
   }
-
+  
 }
 
 #' @importFrom htmltools tags tagAppendAttributes tagList
@@ -27,7 +27,7 @@ list_to_p <- function(list, class = NULL){
     res <- lapply(res, function(x) tagAppendAttributes(x, class = class))
     tagList(res)
   }
-
+  
 }
 
 #' @importFrom glue glue
@@ -210,31 +210,33 @@ col_1 <- function(...){
   column(1, ...)
 }
 
-#' Include Content From a File
-#' 
-#' Load rendered RMarkdown from a file and turn into HTML.
-#' 
-#' @rdname includeRMarkdown
-#' @export
-#' 
-#' @importFrom rmarkdown render
-#' @importFrom markdown markdownToHTML
-#' @importFrom htmltools HTML
-includeRMarkdown <- function(path){
-  
-  md <- tempfile(fileext = '.md')
-  
-  on.exit(unlink(md),add = TRUE)
-  
-  rmarkdown::render(
-    path,
-    output_format = 'md_document',
-    output_dir = tempdir(),
-    output_file = md,quiet = TRUE)
-  
-  html <- markdown::markdownToHTML(md, fragment.only = TRUE)
-  
-  Encoding(html) <- "UTF-8"
-  
-  return(HTML(html))
-}
+#' #' Include Content From a File
+#' #' 
+#' #' Load rendered RMarkdown from a file and turn into HTML.
+#' #' 
+#' #' @rdname includeRMarkdown
+#' #' @export
+#' #' 
+#' #' @importFrom rmarkdown render
+#' #' @importFrom markdown markdownToHTML
+#' #' @importFrom htmltools HTML
+#' #' @importFrom fs file_temp
+#' includeRMarkdown <- function(path){
+#'   
+#'   md <- file_temp(ext = '.md')
+#'   
+#'   on.exit(unlink(md),add = TRUE)
+#'   
+#'   rmarkdown::render(
+#'     path,
+#'     output_format = 'md_document',
+#'     output_dir = tempdir(),
+#'     output_file = md,quiet = TRUE
+#'   )
+#'   
+#'   html <- markdownToHTML(md, fragment.only = TRUE)
+#'   
+#'   Encoding(html) <- "UTF-8"
+#'   
+#'   return(HTML(html))
+#' }

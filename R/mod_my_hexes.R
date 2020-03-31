@@ -12,12 +12,12 @@
 #'
 #' @keywords internal
 #' @export 
-#' @importFrom shiny NS tagList 
+#' @importFrom shiny NS tagList  tags  fluidRow actionButton
 mod_my_hexes_ui <- function(id){
   ns <- NS(id)
   tagList(
     tags$details(
-      tags$summary("Open Hex DataBase"), 
+      summary("Open Hex DataBase"), 
       tags$div(
         class = "innerrounded rounded",
         align = "center",
@@ -49,7 +49,13 @@ mod_my_hexes_ui <- function(id){
 #' @rdname mod_my_hexes
 #' @export
 #' @keywords internal
-
+#' @importFrom whereami cat_where whereami
+#' @importFrom digest digest
+#' @importFrom knitr image_uri
+#' @importFrom base64enc base64encode base64decode
+#' @importFrom purrr pmap
+#' @importFrom shiny removeModal modalDialog textInput tagList observeEvent modalDialog observeEvent showModal modalDialog tagList tags fluidRow tagAppendAttributes modalButton 
+#' @importFrom fs file_temp file_copy file_delete file_temp
 mod_my_hexes_server <- function(
   input, 
   output, 
@@ -73,12 +79,12 @@ mod_my_hexes_server <- function(
   }
   
   observeEvent( input$save , {
-    whereami::cat_where(whereami::whereami())
+    cat_where(whereami())
     showModal(savemodal())
   })
   
   observeEvent( input$savehex , {
-    whereami::cat_where(whereami::whereami())
+    cat_where(whereami())
     removeModal()  
     showModal(
       modalDialog(
@@ -92,13 +98,11 @@ mod_my_hexes_server <- function(
   })
   
   observeEvent( input$oksave , {
-    whereami::cat_where(whereami::whereami())
+    cat_where(whereami())
     removeModal()  
-    id <- digest::digest(
+    id <- digest(
       img$self_()
     )
-    
-    browser()
     
     get_mongo()$insert(
       data.frame(
@@ -107,16 +111,16 @@ mod_my_hexes_server <- function(
         desc = input$desc,
         date = as.character(Sys.Date()), 
         id = id,
-        base64 = knitr::image_uri(
+        base64 = image_uri(
           img$render()
         )
       )
     )
     
-    temp_lc <- tempfile(fileext = ".RDS")
+    temp_lc <- file_temp(ext = ".RDS")
     list(
       self = img$self_(), 
-      img = base64enc::base64encode(img$subplot)
+      img = base64encode(img$subplot)
     ) %>% saveRDS(temp_lc)
     
     get_gridfs()$write(
@@ -126,7 +130,7 @@ mod_my_hexes_server <- function(
   })
   
   observeEvent( input$restore , {
-    whereami::cat_where(whereami::whereami())
+    cat_where(whereami())
     all<- get_mongo()$find()
     
     showModal(
@@ -137,7 +141,7 @@ mod_my_hexes_server <- function(
           h4("Click on the image to restore it"), 
           tags$div(
             class = "gridimg", 
-            purrr::pmap(
+            pmap(
               all, 
               ~ {
                 tags$div(
@@ -184,32 +188,32 @@ mod_my_hexes_server <- function(
   })
   
   observeEvent( input$selected_image , {
-    shiny::removeModal()
-    whereami::cat_where(whereami::whereami())
-    temp_rds <- fs::file_temp(ext = ".RDS")
+    removeModal()
+    cat_where(whereami())
+    temp_rds <- file_temp(ext = ".RDS")
     get_gridfs()$read( input$selected_image , con = temp_rds )
     hxs <- readRDS(temp_rds)
-    bin <- fs::file_temp(
+    bin <- file_temp(
       ext = 'bin'
     )
     conn <- file(bin,"wb")
     writeBin(hxs$img, conn)
     close(conn)
     
-    png <- fs::file_temp(
+    png <- file_temp(
       ext = 'png'
     )
     inconn <- file(bin,"rb")
     outconn <- file(png,"wb")
-    base64enc::base64decode(what=inconn, output=outconn)
+    base64decode(what=inconn, output=outconn)
     close(inconn)
     close(outconn)
-    fs::file_copy(
+    file_copy(
       png, 
       img$subplot, 
       TRUE
     )
-    fs::file_delete(bin)
+    file_delete(bin)
     img$restore(hxs$self, png)
     trigger("render")
   })

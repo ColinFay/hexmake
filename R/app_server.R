@@ -1,4 +1,4 @@
-#' @import shiny
+#' @importFrom shiny callModule
 app_server <- function(input, output,session) {
   
   whereami::cat_where(whereami::whereami())

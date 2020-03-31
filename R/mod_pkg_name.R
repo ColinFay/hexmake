@@ -12,12 +12,14 @@
 #'
 #' @keywords internal
 #' @export 
-#' @importFrom shiny NS tagList 
+
+#' @importFrom shiny NS tagList tags fluidRow textInput numericInput tagAppendAttributes selectInput
+#' @importFrom sysfonts font_families
 mod_pkg_name_ui <- function(id){
   ns <- NS(id)
   tagList(
     tags$details(
-      tags$summary("Manage name"),
+      summary("Manage name"),
       tags$div(
         class = "innerrounded rounded",
         fluidRow(
@@ -73,8 +75,8 @@ mod_pkg_name_ui <- function(id){
             selectInput(
               ns("p_family"), 
               "Font family for name", 
-              selected = sysfonts::font_families()[1], 
-              choices = sysfonts::font_families()
+              selected = font_families()[1], 
+              choices = font_families()
             ) %>%
               tagAppendAttributes(
                 id = ns("fonfam")

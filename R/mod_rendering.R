@@ -12,12 +12,12 @@
 #'
 #' @keywords internal
 #' @export 
-#' @importFrom shiny NS tagList 
+#' @importFrom shiny NS tagList tags fluidRow checkboxInput actionButton icon
 mod_rendering_ui <- function(id){
   ns <- NS(id)
   tagList(
     tags$details(
-      tags$summary("Rendering mode"), 
+      summary("Rendering mode"), 
       tags$div(
         class = "innerrounded rounded",
         align = "center",
@@ -54,7 +54,9 @@ mod_rendering_ui <- function(id){
 #' @rdname mod_rendering
 #' @export
 #' @keywords internal
-
+#' @importFrom golem invoke_js
+#' @importFrom shiny observeEvent
+#' @importFrom whereami cat_where whereami
 mod_rendering_server <- function(
   input,
   output, 
@@ -64,16 +66,16 @@ mod_rendering_server <- function(
   ns <- session$ns
   
   observeEvent( input$render , {
-    whereami::cat_where(whereami::whereami())
+    cat_where(whereami())
     trigger("render")
   })
   
   observeEvent( input$live , {
-    whereami::cat_where(whereami::whereami())
+    cat_where(whereami())
     if (input$live){
-      golem::invoke_js("disable", sprintf("#%s", ns("render")))
+      invoke_js("disable", sprintf("#%s", ns("render")))
     } else {
-      golem::invoke_js("reable", sprintf("#%s", ns("render")))
+      invoke_js("reable", sprintf("#%s", ns("render")))
     }
     r$live <- input$live
   })

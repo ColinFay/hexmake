@@ -12,12 +12,12 @@
 #'
 #' @keywords internal
 #' @export 
-#' @importFrom shiny NS tagList 
+#' @importFrom shiny NS tagList tags fluidRow checkboxInput numericInput
 mod_spotlight_ui <- function(id){
   ns <- NS(id)
   tagList(
     tags$details(
-      tags$summary("Manage Spotlight"),
+      summary("Manage Spotlight"),
       tags$div(
         class = "innerrounded rounded",
         fluidRow(

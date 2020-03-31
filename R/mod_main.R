@@ -12,7 +12,7 @@
 #'
 #' @keywords internal
 #' @export 
-#' @importFrom shiny NS tagList 
+#' @importFrom shiny NS tagList tags
 mod_main_ui <- function(id){
   ns <- NS(id)
   tagList(
@@ -35,10 +35,6 @@ mod_main_ui <- function(id){
       tags$i(
         class="arrow rightarrow"
       )
-    ), 
-    tags$div(
-      class = "pouet",
-      actionButton("log", "log")
     )
   )
 }
@@ -48,7 +44,7 @@ mod_main_ui <- function(id){
 #' @rdname mod_main
 #' @export
 #' @keywords internal
-
+#' @importFrom shiny callModule reactiveValues
 mod_main_server <- function(
   input, 
   output,

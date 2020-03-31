@@ -207,7 +207,7 @@ mod_manip_image_ui <- function(
             ,
             fluidRow(
               tags$details(
-                tags$summary("Flip flop image"),
+                summary("Flip flop image"),
                 tags$div(
                   class = "modalinner innerrounded rounded",
                   col_6(
@@ -228,7 +228,7 @@ mod_manip_image_ui <- function(
             , 
             fluidRow(
               tags$details(
-                tags$summary("Modulate"),
+                summary("Modulate"),
                 tags$div(
                   class = "modalinner innerrounded rounded",
                   col_12(
@@ -265,7 +265,7 @@ mod_manip_image_ui <- function(
             
             fluidRow(
               tags$details(
-                tags$summary("Deskew image"),
+                summary("Deskew image"),
                 tags$div(
                   class = "modalinner innerrounded rounded",
                   col_6(
@@ -321,7 +321,11 @@ mod_manip_image_ui <- function(
 #' @rdname mod_manip_image
 #' @export
 #' @keywords internal
-
+#' @importFrom magick noise_types image_read image_despeckle image_reducenoise image_noise image_blur image_charcoal image_oilpaint image_emboss image_implode image_negate image_trim image_rotate image_flip image_flop image_modulate image_deskew image_orient image_write
+#' @importFrom whereami cat_where whereami
+#' @importFrom fs file_temp file_copy
+#' @importFrom tools file_ext
+#' @importFrom  shiny observeEvent renderImage withProgress removeModal req updateCheckboxInput
 mod_manip_image_server <- function(
   input, 
   output, 
@@ -538,7 +542,7 @@ mod_manip_image_server <- function(
   
   observeEvent( input$okokok , {
     removeModal()
-  })
+  }) 
   
   observeEvent( c(
     input$okokok, 

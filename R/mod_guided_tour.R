@@ -6,12 +6,12 @@
 #'
 #' @noRd 
 #'
-#' @importFrom shiny NS tagList 
+#' @importFrom shiny NS tagList  tags fluidRow actionButton
 mod_guided_tour_ui <- function(id){
   ns <- NS(id)
   tagList(
     tags$details(
-      tags$summary("Get a Guided Tour"), 
+      summary("Get a Guided Tour"), 
       tags$div(
         class = "innerrounded rounded",
         align = "center",
@@ -33,6 +33,10 @@ mod_guided_tour_ui <- function(id){
 #' guided_tour Server Function
 #'
 #' @noRd 
+#' @importFrom golem invoke_js
+#' @importFrom cicerone Cicerone
+#' @importFrom purrr pmap
+#' @importFrom shiny NS
 mod_guided_tour_server <- function(
   input, 
   output, 
@@ -42,10 +46,10 @@ mod_guided_tour_server <- function(
   ns <- session$ns
   
   observeEvent( input$get , {
-    golem::invoke_js(
+    invoke_js(
       "drive", list(arg = TRUE)
     )
-    guide <- cicerone::Cicerone$
+    guide <- Cicerone$
       new(
         allow_close = FALSE, 
         opacity = 0.75, 
@@ -54,7 +58,7 @@ mod_guided_tour_server <- function(
     
     ns <- NS("main_ui_1-left_ui_1")
     
-    purrr::pmap(
+    pmap(
       data.frame(
         ids = c(
           ns("pkg_name_ui_1-package"),
