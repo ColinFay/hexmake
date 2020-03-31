@@ -19,10 +19,9 @@ Imports:
     attempt,
     base64enc,
     cicerone (>= 1.0.1),
-    whereami (>= 0.1.9)
+    whereami
 RoxygenNote: 7.1.0
 URL: https://github.com/colinfay/hexmake
 BugReports: https://github.com/colinfay/hexmake/issues
 Remotes:  
-    JohnCoene/cicerone,
-    yonicd/whereami
+    JohnCoene/cicerone
