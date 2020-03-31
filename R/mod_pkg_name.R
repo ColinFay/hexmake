@@ -33,7 +33,7 @@ mod_pkg_name_ui <- function(id){
             col_6(
               numericInput(
                 ns("p_x"),
-                "x position for package name", 
+                "x position for name", 
                 value = 1, 
                 step = 0.1
               )
@@ -41,7 +41,7 @@ mod_pkg_name_ui <- function(id){
             col_6(
               numericInput(
                 ns("p_y"), 
-                "y position for package name", 
+                "y position for name", 
                 value = 1.4, 
                 step = 0.1
               )
@@ -51,7 +51,7 @@ mod_pkg_name_ui <- function(id){
           col_6(
             tags$label(
               `for` = "p_color", 
-              "Font color for package name"
+              "Font color for name"
             ),
             tags$br(),
             tags$input(
@@ -72,7 +72,7 @@ mod_pkg_name_ui <- function(id){
           col_6(
             selectInput(
               ns("p_family"), 
-              "Font family for package name", 
+              "Font family for name", 
               selected = sysfonts::font_families()[1], 
               choices = sysfonts::font_families()
             ) %>%
@@ -83,7 +83,7 @@ mod_pkg_name_ui <- function(id){
           col_6(
             numericInput(
               ns("p_size"), 
-              "Font size for package name", 
+              "Font size for name", 
               value = 8, 
               step = 0.1
             )
