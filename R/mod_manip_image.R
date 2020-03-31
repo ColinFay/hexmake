@@ -629,9 +629,10 @@ mod_manip_image_server <- function(
         value = FALSE
       )
     }
+    
     req(r$sub_file)
     fs::file_copy(
-      img$subplot, 
+      img$original_image, 
       r$sub_file,
       TRUE
     )
