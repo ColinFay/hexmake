@@ -177,21 +177,21 @@ mod_manip_image_ui <- function(
             fluidRow(
               h4("Image Effects")
             ),
-            modalinner(
-              summary = "rotate", 
-              checkbox_id = "rotate", 
-              parent_ns = ns, 
-              col_6(
-                sliderInput(
-                  ns("rotate_degrees"), 
-                  "Degrees", 
-                  min = 0,
-                  value = 0,
-                  max = 360
-                )
-              )
-            )
-            , 
+            # modalinner(
+            #   summary = "rotate", 
+            #   checkbox_id = "rotate", 
+            #   parent_ns = ns, 
+            #   col_6(
+            #     sliderInput(
+            #       ns("rotate_degrees"), 
+            #       "Degrees", 
+            #       min = 0,
+            #       value = 0,
+            #       max = 360
+            #     )
+            #   )
+            # )
+            #, 
             modalinner(
               summary = "trim", 
               checkbox_id = "trim", 
@@ -261,29 +261,29 @@ mod_manip_image_ui <- function(
                 )
               )
             )
-            , 
-            
-            fluidRow(
-              tags$details(
-                summary("Deskew image"),
-                tags$div(
-                  class = "modalinner innerrounded rounded",
-                  col_6(
-                    checkboxInput(
-                      ns("deskew"), 
-                      "Flip"
-                    )
-                  ), 
-                  col_6(
-                    numericInput(
-                      ns("deskew_threshold"), 
-                      "Threshold", 
-                      value = 40
-                    )
-                  )
-                )
-              )
-            )
+            # , 
+            # 
+            # fluidRow(
+            #   tags$details(
+            #     summary("Deskew image"),
+            #     tags$div(
+            #       class = "modalinner innerrounded rounded",
+            #       col_6(
+            #         checkboxInput(
+            #           ns("deskew"), 
+            #           "Flip"
+            #         )
+            #       ), 
+            #       col_6(
+            #         numericInput(
+            #           ns("deskew_threshold"), 
+            #           "Threshold", 
+            #           value = 40
+            #         )
+            #       )
+            #     )
+            #   )
+            # )
             , 
             fluidRow(
               h4("Restore")
@@ -389,8 +389,8 @@ mod_manip_image_server <- function(
     input$negate,
     input$trim, 
     input$trim_fuzz, 
-    input$rotate, 
-    input$rotate_degrees, 
+    # input$rotate, 
+    # input$rotate_degrees, 
     input$flip, 
     input$flop, 
     input$modulate, 
@@ -398,7 +398,7 @@ mod_manip_image_server <- function(
     input$saturation, 
     input$hue, 
     input$orient, 
-    input$deskew
+    #input$deskew
   ), {
     whereami::cat_where(whereami::whereami())
     withProgress(
@@ -477,12 +477,12 @@ mod_manip_image_server <- function(
           )
         }
         
-        if (input$rotate){
-          r$sub_file_read <- magick::image_rotate(
-            r$sub_file_read,
-            input$rotate_degrees
-          )
-        }
+        # if (input$rotate){
+        #   r$sub_file_read <- magick::image_rotate(
+        #     r$sub_file_read,
+        #     input$rotate_degrees
+        #   )
+        # }
         if (input$flip){
           r$sub_file_read <- magick::image_flip(
             r$sub_file_read
@@ -502,12 +502,12 @@ mod_manip_image_server <- function(
           )
         }
         
-        if (input$deskew){
-          r$sub_file_read <- magick::image_deskew(
-            r$sub_file_read, 
-            input$deskew_threshold
-          )
-        }
+        # if (input$deskew){
+        #   r$sub_file_read <- magick::image_deskew(
+        #     r$sub_file_read, 
+        #     input$deskew_threshold
+        #   )
+        # }
         
         magick::image_write(
           r$sub_file_read, 
@@ -559,8 +559,8 @@ mod_manip_image_server <- function(
       "negate",
       "trim", 
       "trim_fuzz", 
-      "rotate", 
-      "rotate_degrees", 
+      # "rotate", 
+      # "rotate_degrees", 
       "flip", 
       "flop", 
       "modulate", 
@@ -623,17 +623,24 @@ mod_manip_image_server <- function(
       "orient", 
       "deskew"
     )){
-      updateCheckboxInput(
-        session, 
-        inputId = i,
-        value = FALSE
-      )
+      isolate({
+        updateCheckboxInput(
+          session, 
+          inputId = i,
+          value = FALSE
+        )
+      })
     }
     
     req(r$sub_file)
     fs::file_copy(
       img$original_image, 
       r$sub_file,
+      TRUE
+    )
+    fs::file_copy(
+      img$original_image, 
+      img$subplot,
       TRUE
     )
     trigger("render")
