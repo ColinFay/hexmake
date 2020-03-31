@@ -18,7 +18,7 @@ mod_restore_ui <- function(id){
   tagList(
     tagList(
       tags$details(
-        h4("Manage hex config"),
+        summary("Manage hex config"),
         tags$div(
           class = "innerrounded rounded",
           align = "center",
