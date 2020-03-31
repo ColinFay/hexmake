@@ -33,15 +33,9 @@ golem::add_fct("assert")
 
 ## 2.2 Add dependencies
 
+attachment::att_from_rscripts() %>%
+  purrr::map(usethis::use_package)
 
-usethis::use_package( "hexSticker" ) # To call each time you need a new package
-usethis::use_package( "sysfonts" ) # To call each time you need a new package
-usethis::use_package( "magick" ) # To call each time you need a new package
-usethis::use_package( "fs" ) # To call each time you need a new package
-usethis::use_package( "R6" ) # To call each time you need a new package
-usethis::use_package( "attempt" ) # To call each time you need a new package
-usethis::use_package( "whereami" ) # To call each time you need a new package
-usethis::use_dev_package("cicerone")
 ## 2.3 Add tests
 
 usethis::use_test( "app" )
