@@ -404,7 +404,7 @@ mod_manip_image_server <- function(
     withProgress(
       message = "Rendering image"
       , {
-        browser()
+        
         # We read sub_file here as a magick object
         r$sub_file_read <- magick::image_read(img$subplot)
         
