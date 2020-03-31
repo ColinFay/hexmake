@@ -4,4 +4,4 @@
 # 
 pkgload::load_all()
 options( "golem.app.prod" = TRUE)
-hexmake::run_app() # add parameters here (if any)
+run_app(with_mongo = TRUE) # add parameters here (if any)
