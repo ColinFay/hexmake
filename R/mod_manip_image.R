@@ -404,7 +404,7 @@ mod_manip_image_server <- function(
     withProgress(
       message = "Rendering image"
       , {
-        
+        browser()
         # We read sub_file here as a magick object
         r$sub_file_read <- magick::image_read(img$subplot)
         
@@ -506,13 +506,6 @@ mod_manip_image_server <- function(
           r$sub_file_read <- magick::image_deskew(
             r$sub_file_read, 
             input$deskew_threshold
-          )
-        }
-        
-        if (input$orient){
-          r$sub_file_read <- magick::image_orient(
-            r$sub_file_read, 
-            input$orient_orientation
           )
         }
         
