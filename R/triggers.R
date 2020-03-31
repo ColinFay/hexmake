@@ -1,3 +1,4 @@
+#' @importFrom shiny reactiveVal getDefaultReactiveDomain
 init <- function(name, session = getDefaultReactiveDomain()){
   session$userData[[name]] <- reactiveVal(0)
 }

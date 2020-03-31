@@ -9,16 +9,33 @@
 ## 
 golem::add_module( name = "main" ) # Name of the module
 golem::add_module( name = "left" ) # Name of the module
+golem::add_module( name = "binder" ) # Name of the module
+golem::add_module( name = "formals_to_mod" ) # Name of the module
+golem::add_module( name = "pkg_name" ) # Name of the module
+golem::add_module( name = "image" ) # Name of the module
+golem::add_module( name = "manip_image" ) # Name of the module
+golem::add_module( name = "hexa" ) # Name of the module
+golem::add_module( name = "spotlight" ) # Name of the module
+golem::add_module( name = "url" ) # Name of the module
+golem::add_module( name = "rendering" ) # Name of the module
+golem::add_module( name = "dl" ) # Name of the module
+golem::add_module( name = "restore" ) # Name of the module
 golem::add_module( name = "right" ) # Name of the module
 golem::add_module( name = "about" ) # Name of the module
+golem::add_module( name = "my_hexes" ) # Name of the module
+golem::add_module( name = "guided_tour", fct = "cicerone") # Name of the module
 
 usethis::use_r("R6")
 usethis::use_r("triggers")
+
+golem::add_fct("mongo")
+golem::add_fct("assert")
+
+
 ## 2.2 Add dependencies
 
-usethis::use_package( "hexSticker" ) # To call each time you need a new package
-usethis::use_package( "sysfonts" ) # To call each time you need a new package
-usethis::use_package( "magick" ) # To call each time you need a new package
+attachment::att_from_rscripts() %>%
+  purrr::map(usethis::use_package)
 
 ## 2.3 Add tests
 

@@ -1,4 +1,4 @@
-#' @import shiny
+#' @importFrom  shiny fluidPage
 app_ui <- function() {
   tagList(
     # Leave this function for adding external resources
@@ -10,18 +10,21 @@ app_ui <- function() {
   )
 }
 
-#' @import shiny
+#' @importFrom  shiny fluidPage tags
+#' @importFrom golem add_resource_path favicon bundle_resources
+#' @importFrom cicerone use_cicerone
 golem_add_external_resources <- function(){
   
-  addResourcePath(
-    'www', system.file('app/www', package = 'hexmake')
+  add_resource_path(
+    'www', app_sys('app/www')
   )
  
   tags$head(
-    golem::activate_js(),
-    golem::favicon(),
-    tags$title("hexmake"),
-    tags$link(rel="stylesheet", type="text/css", href="www/custom.css"), 
-    tags$script(src="www/script.js")
+    favicon(),
+    bundle_resources(
+      path = app_sys('app/www'),
+      app_title = 'hexmake'
+    ), 
+    use_cicerone()
   )
 }

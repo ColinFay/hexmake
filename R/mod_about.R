@@ -12,26 +12,35 @@
 #'
 #' @keywords internal
 #' @export 
-#' @importFrom shiny NS tagList 
+#' @importFrom shiny NS tagList tags  fluidRow actionButton
+#' @importFrom whereami cat_where whereami
 mod_about_ui <- function(id){
   ns <- NS(id)
   tagList(
-    fluidRow(
-      col_6(
-        actionButton(
-          ns("showhowto"), 
-          "How to use this app", 
-          class = "modbutton"
-        )
-      ), 
-      col_6(
-        actionButton(
-          ns("showmod"), 
-          "About this app", 
-          class = "modbutton"
+    tags$details(
+      summary("About"), 
+      tags$div(
+        class = "innerrounded rounded",
+        align = "center",
+        fluidRow(
+          col_6(
+            actionButton(
+              ns("showhowto"), 
+              "How to use this app", 
+              class = "modbutton"
+            )
+          ), 
+          col_6(
+            actionButton(
+              ns("showmod"), 
+              "About this app", 
+              class = "modbutton"
+            )
+          )
         )
       )
     )
+    
   )
 }
 
@@ -40,7 +49,8 @@ mod_about_ui <- function(id){
 #' @rdname mod_about
 #' @export
 #' @keywords internal
-
+#' @importFrom whereami cat_where whereami
+#' @importFrom shiny modalDialog includeMarkdown tagList actionButton observeEvent showModal
 mod_about_server <- function(input, output, session){
   ns <- session$ns
   
@@ -59,6 +69,7 @@ mod_about_server <- function(input, output, session){
   }
   
   observeEvent(input$showhowto, {
+    whereami::cat_where(whereami::whereami())
     showModal(howtomodal())
   })
   
@@ -77,18 +88,14 @@ mod_about_server <- function(input, output, session){
   }
   
   observeEvent(input$showmod, {
+    whereami::cat_where(whereami::whereami())
     showModal(aboutmodal())
   })
   
   observeEvent( input$ok , {
+    whereami::cat_where(whereami::whereami())
     removeModal()
   })
   
 }
-
-## To be copied in the UI
-# 
-
-## To be copied in the server
-# 
 

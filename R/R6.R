@@ -1,19 +1,23 @@
-#' @import hexSticker
-#' @import R6
-#' @import ggplot2
-Hex <- R6::R6Class(
+#' @importFrom  hexSticker sticker
+#' @importFrom R6 R6Class
+#' @importFrom sysfonts font_families
+#' @importFrom fs file_temp file_copy
+#' @importFrom tools file_ext
+#' @importFrom attempt stop_if
+#' @importFrom purrr walk
+Hex <- R6Class(
   "Hex", 
   public = list(
     subplot = NULL, 
-    s_x = 0.8, 
-    s_y = 0.75, 
-    s_width = 0.3,
-    s_height = 0.5, 
+    s_x = 1, 
+    s_y = 0.7, 
+    s_width = 0.4,
+    s_height = 1, 
     package = "hexmake", 
     p_x = 1, 
     p_y = 1.4, 
     p_color = "#FFFFFF",
-    p_family = "Aller_Rg", 
+    p_family = sysfonts::font_families()[1], 
     p_size = 8, 
     h_size = 1.2,
     h_fill = "#1881C2", 
@@ -28,21 +32,68 @@ Hex <- R6::R6Class(
     u_x = 1, 
     u_y = 0.08, 
     u_color = "black",
-    u_family = "Aller_Rg", 
+    u_family = sysfonts::font_families()[1], 
     u_size = 1.5, 
     u_angle = 30,
     white_around_sticker = FALSE,
     filename = paste0("package", ".png"), 
     asp = 1, 
-    dpi = 300,
+    dpi = 600,
     saved_path = NULL,
+    old = NULL,
+    original_image = NULL,
     initialize = function(){
-      self$subplot <- system.file("sign-of-the-horns.png", package = "hexmake")
+      
+      # At launch, the original image is the horn emoji, we copy it 
+      # as original image
+      horns <- system.file("sign-of-the-horns.png", package = "hexmake")
+      
+      self$original_image <- fs::file_temp(
+        file_ext(
+          horns
+        )
+      )
+      
+      fs::file_copy(
+        horns, 
+        self$original_image 
+      )
+      
+      # We also add a copy of this as subplot, the image that is actually
+      # drawn on the hex
+      self$subplot <- fs::file_temp(
+        ext = tools::file_ext(
+          horns
+        )
+      )
+      
+      fs::file_copy(
+        horns, 
+        self$subplot
+      )
+      
+      self$old <- self$clone()
+      
+      attempt::stop_if(
+        self$original_image == self$subplot
+      )
+      
     }, 
-    render = function(path){
-      self$saved_path <- path
+    self_ = function(){
+      return(self)
+    },
+    new_original_image = function(path){
+      self$original_image <- path
+    },
+    render = function(con){
+      if (missing(con)){
+        self$saved_path <- file_temp(ext = ".png")
+      } else {
+        self$saved_path <- con
+      }
+
       sticker(
-        subplot = self$subplot, 
+        subplot =  self$subplot, 
         s_x = self$s_x,
         s_y = self$s_y,
         s_width = self$s_width,
@@ -70,10 +121,30 @@ Hex <- R6::R6Class(
         u_size = self$u_size,
         u_angle = self$u_angle,
         white_around_sticker = self$white_around_sticker,
-        filename = path, 
+        filename = self$saved_path, 
         asp = self$asp, 
         dpi = self$dpi
       )
+      self$saved_path
+    }, 
+    restore = function(vals = self$old, subplot = self$subplot){
+      walk(
+        grep(
+          "enclos_env|^old$|restore|render|initialize|clone|export|self_|new_original_image", 
+          names(vals), 
+          invert = TRUE, 
+          value = TRUE
+        ), ~ {
+          self[[.x]] <- vals[[.x]]
+        }
+      )
+      self$subplot <- subplot
+    }, 
+    export = function(con){
+      saveRDS(list(
+        self = self, 
+        img = self$subplot
+      ), con)
     }
   )
 )

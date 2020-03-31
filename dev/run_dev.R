@@ -6,7 +6,7 @@ golem::detach_all_attached()
 # rm(list=ls(all.names = TRUE))
 
 # Document and reload your package
-golem::document_and_reload()
-
+devtools::document()
+pkgload::load_all(export_all = FALSE,helpers = FALSE,attach_testthat = FALSE)
 # Run the application
-hexmake::run_app()
+run_app(with_mongo = TRUE)
