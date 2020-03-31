@@ -17,13 +17,13 @@ mod_my_hexes_ui <- function(id){
   ns <- NS(id)
   tagList(
     tags$details(
-      tags$summary("Global Hexes"), 
+      tags$summary("Open Hex DataBase"), 
       tags$div(
         class = "innerrounded rounded",
         align = "center",
         fluidRow(
           col_12(
-            h4("Browse open db of hexes, save yours in it")
+            h4("Browse the open db of hexes, save yours in it")
           ),
           col_6(
             actionButton(
@@ -34,7 +34,7 @@ mod_my_hexes_ui <- function(id){
           col_6(
             actionButton(
               ns("restore"), 
-              "Search available hexes"
+              "Search Available Hexes"
             )
           )
         )

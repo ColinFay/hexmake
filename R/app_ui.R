@@ -11,16 +11,17 @@ app_ui <- function() {
 }
 
 #' @import shiny
+#' @importFrom golem add_resource_path favicon bundle_resources
 golem_add_external_resources <- function(){
   
-  addResourcePath(
-    'www', system.file('app/www', package = 'hexmake')
+  add_resource_path(
+    'www', app_sys('app/www')
   )
  
   tags$head(
-    golem::favicon(),
+    favicon(),
     bundle_resources(
-      path = system.file('app/www', package = 'hexmake'),
+      path = app_sys('app/www'),
       app_title = 'hexmake'
     ), 
     cicerone::use_cicerone()
