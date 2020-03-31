@@ -535,10 +535,56 @@ mod_manip_image_server <- function(
   
   observeEvent( input$okokok , {
     removeModal()
+    whereami::cat_where(whereami::whereami())
+    for (i in c(
+      "times", 
+      "despeckle",
+      "reducenoise", 
+      "radius_reducenoise",
+      "blur",
+      "radius_blur",
+      "sigma_blur",
+      "noise",
+      "noisetype", 
+      "charcoal",
+      "radius_charcoal",
+      "sigma_charcoal", 
+      "oilpaint",
+      "oilpaint_radius", 
+      "emboss", 
+      "emboss_radius", 
+      "emboss_sigma",
+      "implode", 
+      "implode_factor",
+      "negate",
+      "trim", 
+      "trim_fuzz", 
+      "rotate", 
+      "rotate_degrees", 
+      "flip", 
+      "flop", 
+      "modulate", 
+      "brightness", 
+      "saturation", 
+      "hue", 
+      "orient", 
+      "deskew"
+    )){
+      updateCheckboxInput(
+        session, 
+        inputId = i,
+        value = FALSE
+      )
+      fs::file_copy(
+        r$sub_file,
+        img$subplot,
+        TRUE
+      )
+      trigger("render")
+    }
   }) 
   
   observeEvent( c(
-    input$okokok, 
     input$restoreoriginal
   ), {
     
