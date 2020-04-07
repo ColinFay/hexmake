@@ -71,7 +71,7 @@ mod_restore_server <- function(
   
   observeEvent( input$restore , {
     cat_where(whereami())
-    img$restore()
+    img$restore(subplot = img$original_image)
     trigger("render")
   }, ignoreInit = TRUE)
   
