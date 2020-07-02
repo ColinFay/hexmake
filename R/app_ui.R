@@ -5,7 +5,7 @@ app_ui <- function() {
     golem_add_external_resources(),
     # List the first level UI elements here 
     fluidPage(
-      htmlTemplate(app_sys("app/spinner.html")),
+      #htmlTemplate(app_sys("app/spinner.html")),
       mod_main_ui("main_ui_1"), 
       tagList(
         tags$p(

@@ -131,61 +131,67 @@ mod_my_hexes_server <- function(
   
   observeEvent( input$restore , {
     cat_where(whereami())
-    golem::invoke_js("spinner_show", TRUE)
-    all<- get_mongo()$find()
-    golem::invoke_js("spinner_hide", TRUE)
-    showModal(
-      modalDialog(
-        easyClose = TRUE,
-        title = "Available hexes",
-        tagList(
-          h4("Click on the image to restore it"), 
-          tags$div(
-            class = "gridimg", 
-            pmap(
-              all, 
-              ~ {
-                tags$div(
-                  tags$h3(..1), 
-                  h4(
-                    sprintf(
-                      "Made by %s on %s", 
-                      ..2, ..4
-                    )
-                  ),
-                  tags$blockquote(
-                    ..3
-                  ),
-                  tags$div(
-                    class = "innersearch",
-                    fluidRow(
-                      col_6(
-                        tags$img(
-                          src = ..6, 
-                          width = '100%'
+    #golem::invoke_js("spinner_show", TRUE)
+    shiny::withProgress(
+      message = "Loading the hex from the DB", expr = {
+        all<- get_mongo()$find()
+        incProgress(0.5)
+        showModal(
+          modalDialog(
+            easyClose = TRUE,
+            title = "Available hexes",
+            tagList(
+              h4("Click on the image to restore it"), 
+              tags$div(
+                class = "gridimg", 
+                pmap(
+                  all, 
+                  ~ {
+                    tags$div(
+                      tags$h3(..1), 
+                      h4(
+                        sprintf(
+                          "Made by %s on %s", 
+                          ..2, ..4
                         )
-                      ) %>%
-                        tagAppendAttributes(
-                          onclick = sprintf(
-                            "Shiny.setInputValue('%s', $(this).attr('val'), {priority: 'event'})", 
-                            ns("selected_image")
-                          ), 
-                          val = ..5
+                      ),
+                      tags$blockquote(
+                        ..3
+                      ),
+                      tags$div(
+                        class = "innersearch",
+                        fluidRow(
+                          col_6(
+                            tags$img(
+                              src = ..6, 
+                              width = '100%'
+                            )
+                          ) %>%
+                            tagAppendAttributes(
+                              onclick = sprintf(
+                                "Shiny.setInputValue('%s', $(this).attr('val'), {priority: 'event'})", 
+                                ns("selected_image")
+                              ), 
+                              val = ..5
+                            )
+                          , 
                         )
-                      , 
+                      )
                     )
-                  )
+                    
+                  }
                 )
-                
-              }
+              )
+            ),
+            footer = tagList(
+              modalButton("Cancel")
             )
           )
-        ),
-        footer = tagList(
-          modalButton("Cancel")
         )
-      )
+      }
     )
+    
+    #golem::invoke_js("spinner_hide", TRUE)
   })
   
   observeEvent( input$selected_image , {
