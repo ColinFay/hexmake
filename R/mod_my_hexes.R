@@ -131,8 +131,9 @@ mod_my_hexes_server <- function(
   
   observeEvent( input$restore , {
     cat_where(whereami())
+    golem::invoke_js("spinner_show", TRUE)
     all<- get_mongo()$find()
-    
+    golem::invoke_js("spinner_hide", TRUE)
     showModal(
       modalDialog(
         easyClose = TRUE,
