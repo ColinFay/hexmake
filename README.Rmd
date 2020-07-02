@@ -30,7 +30,7 @@ Then set a series of env variables with the infos (or use the one from your prod
 
 ```{r}
 Sys.setenv("MONGOPORT" = 27017)
-Sys.setenv("MONGOURL" : "127.0.0.1")
+Sys.setenv("MONGOURL" = "127.0.0.1")
 Sys.setenv("MONGODB" = "hex")
 Sys.setenv("MONGOCOLLECTION" = "make")
 ```

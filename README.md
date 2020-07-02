@@ -8,8 +8,7 @@ Golem app available at <https://connect.thinkr.fr/hexmake/>
 ## Use it with a mongo db
 
 If you want to use a mongo db as a backend to store hexes, you can plug
-it with a docker
-image.
+it with a docker image.
 
 ``` bash
 docker run -v $(pwd)/inst/db:/data/db -p 12334:27017 -d --name mongohexmas mongo:3.4 
@@ -20,7 +19,7 @@ your prod env).
 
 ``` r
 Sys.setenv("MONGOPORT" = 27017)
-Sys.setenv("MONGOURL" : "127.0.0.1")
+Sys.setenv("MONGOURL" = "127.0.0.1")
 Sys.setenv("MONGODB" = "hex")
 Sys.setenv("MONGOCOLLECTION" = "make")
 ```
