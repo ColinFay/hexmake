@@ -28,7 +28,6 @@ golem_add_external_resources <- function(){
   
   tags$head(
     favicon(),
-    waiter::use_waiter(),
     bundle_resources(
       path = app_sys('app/www'),
       app_title = 'hexmake'

@@ -22,7 +22,6 @@ Imports:
     whereami,
     config,
     mongolite,
-    rmarkdown,
     markdown,
     purrr,
     tools,
