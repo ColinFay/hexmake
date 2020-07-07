@@ -4,25 +4,30 @@ launch_mongo <- function(
   collection, 
   db, 
   url, 
-  port
+  port, 
+  user, 
+  pass
 ){
+  if (nchar(user) == 0){
+    URI  <- sprintf(
+      "mongodb://%s:%s", 
+      url,
+      port
+    )
+  } else {
+    URI  <- sprintf("mongodb://%s:%s@%s:%s", user, pass, url, port)
+  }
+  
   session$userData$mongo <- mongo(
     collection =  collection, 
     db = db, 
-    url = sprintf(
-      "mongodb://%s:%s", 
-      url,
-      port
-    )
+    url = URI
   )
+  
   
   session$userData$gridfs <- gridfs(
     db = db, 
-    url = sprintf(
-      "mongodb://%s:%s", 
-      url,
-      port
-    )
+    url = URI
   )
   
   session$userData$mongo_stats <- list(
