@@ -15,4 +15,7 @@ $( document ).ready(function() {
   Shiny.addCustomMessageHandler('spinner_hide', function(arg) {
     $("#spinner").hide();
   })
+  Shiny.addCustomMessageHandler('update_color', function(arg) {
+    $("#" + arg.id).val(arg.color);
+  })
 });
