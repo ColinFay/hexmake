@@ -349,6 +349,7 @@ mod_manip_image_server <- function(
         )
       )
     }
+
     fs::file_copy(
       img$subplot,
       r$sub_file, 
@@ -404,7 +405,6 @@ mod_manip_image_server <- function(
     withProgress(
       message = "Rendering image"
       , {
-        
         # We read sub_file here as a magick object
         r$sub_file_read <- magick::image_read(img$subplot)
         
@@ -575,6 +575,7 @@ mod_manip_image_server <- function(
         inputId = i,
         value = FALSE
       )
+
       fs::file_copy(
         r$sub_file,
         img$subplot,
@@ -631,18 +632,23 @@ mod_manip_image_server <- function(
         )
       })
     }
-    
+
     req(r$sub_file)
-    fs::file_copy(
-      img$original_image, 
-      r$sub_file,
-      TRUE
-    )
-    fs::file_copy(
-      img$original_image, 
-      img$subplot,
-      TRUE
-    )
+    attempt::attempt({
+      fs::file_copy(
+        img$original_image, 
+        r$sub_file,
+        TRUE
+      )
+    })
+
+    attempt::attempt({
+      fs::file_copy(
+        img$original_image, 
+        img$subplot,
+        TRUE
+      )
+    })
     trigger("render")
   })
   

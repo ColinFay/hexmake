@@ -1,6 +1,6 @@
 Package: hexmake
 Title: Hex Stickers Maker
-Version: 0.1.1
+Version: 0.1.2
 Authors@R: person('Colin', 'Fay', email = 'contact@colinfay.me', role = c('cre', 'aut'))
 Description: A Shiny App for Making Hex Stickers.
 License: MIT + file LICENSE

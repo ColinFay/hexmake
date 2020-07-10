@@ -197,6 +197,7 @@ mod_my_hexes_server <- function(
   observeEvent( input$selected_image , {
     removeModal()
     cat_where(whereami())
+    
     temp_rds <- file_temp(ext = ".RDS")
     get_gridfs()$read( input$selected_image , con = temp_rds )
     hxs <- readRDS(temp_rds)
@@ -222,6 +223,9 @@ mod_my_hexes_server <- function(
     )
     file_delete(bin)
     img$restore(hxs$self, png)
+    img$new_original_image(png)
+    img$saved_path <- png
+    trigger("restore")
     trigger("render")
   })
   
