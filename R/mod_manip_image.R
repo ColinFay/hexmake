@@ -325,7 +325,7 @@ mod_manip_image_ui <- function(
 #' @importFrom whereami cat_where whereami
 #' @importFrom fs file_temp file_copy
 #' @importFrom tools file_ext
-#' @importFrom  shiny observeEvent renderImage withProgress removeModal req updateCheckboxInput
+#' @importFrom  shiny observeEvent renderImage withProgress removeModal req updateCheckboxInput isolate
 mod_manip_image_server <- function(
   input, 
   output, 

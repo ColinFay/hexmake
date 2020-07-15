@@ -1,4 +1,5 @@
 #' @importFrom  shiny fluidPage
+#' @importFrom  utils packageVersion
 app_ui <- function() {
   tagList(
     # Leave this function for adding external resources

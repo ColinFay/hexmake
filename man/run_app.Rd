@@ -6,6 +6,9 @@
 \usage{
 run_app(with_mongo = TRUE)
 }
+\arguments{
+\item{with_mongo}{Do you want to use mongo as a backend?}
+}
 \description{
 Run the Shiny Application
 }

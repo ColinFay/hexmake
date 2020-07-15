@@ -54,7 +54,7 @@ mod_my_hexes_ui <- function(id){
 #' @importFrom knitr image_uri
 #' @importFrom base64enc base64encode base64decode
 #' @importFrom purrr pmap
-#' @importFrom shiny removeModal modalDialog textInput tagList observeEvent modalDialog observeEvent showModal modalDialog tagList tags fluidRow tagAppendAttributes modalButton 
+#' @importFrom shiny removeModal modalDialog textInput tagList observeEvent modalDialog observeEvent showModal modalDialog tagList tags fluidRow tagAppendAttributes modalButton incProgress
 #' @importFrom fs file_temp file_copy file_delete file_temp
 mod_my_hexes_server <- function(
   input, 

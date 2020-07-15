@@ -25,6 +25,7 @@ mod_binder_ui <- function(id){
 #' @rdname mod_binder
 #' @export
 #' @keywords internal
+#' @importFrom shiny updateTextInput updateNumericInput updateSelectInput
 
 mod_binder_server <- function(
   input, 

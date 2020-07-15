@@ -1,5 +1,6 @@
 #' Run the Shiny Application
 #'
+#' @param with_mongo Do you want to use mongo as a backend?
 #' @export
 #' @importFrom shiny shinyApp
 #' @importFrom golem with_golem_options

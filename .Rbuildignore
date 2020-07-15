@@ -10,3 +10,4 @@ $run_dev.*
 ^app\.R$
 ^Dockerfile$
 ^/Users/colin/Seafile/documents_colin/R/opensource/hexmas/Dockerfile$
+^manifest\.json$
