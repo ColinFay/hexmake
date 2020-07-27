@@ -24,6 +24,7 @@ golem::add_module( name = "right" ) # Name of the module
 golem::add_module( name = "about" ) # Name of the module
 golem::add_module( name = "my_hexes" ) # Name of the module
 golem::add_module( name = "guided_tour", fct = "cicerone") # Name of the module
+golem::add_module( name = "prizes") # Name of the module
 
 usethis::use_r("R6")
 usethis::use_r("triggers")

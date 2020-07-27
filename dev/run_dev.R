@@ -8,8 +8,5 @@ golem::detach_all_attached()
 # Document and reload your package
 devtools::document()
 pkgload::load_all(export_all = FALSE,helpers = FALSE,attach_testthat = FALSE)
-# Run the application
-library(reactlog)
-reactlog_enable()
 
 run_app(with_mongo = TRUE)
