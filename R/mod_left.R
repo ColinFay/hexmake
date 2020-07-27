@@ -37,7 +37,9 @@ mod_left_ui <- function(id){
       mod_rendering_ui(ns("rendering_ui_1")), 
       h3("About"),
       mod_about_ui(ns("about_ui_1")), 
-      mod_guided_tour_ui(ns("guided_tour_ui_1"))
+      mod_guided_tour_ui(ns("guided_tour_ui_1")),
+      h3("Prizes"),
+      mod_prizes_ui(ns("prizes_ui_1"))
     )
   )
 }
