@@ -1,0 +1,9 @@
+.RData
+.Rhistory
+dev/
+.git
+.gitignore
+manifest.json
+CODE_OF_CONDUCT.md
+.DS_Store
+.Rproj.user
