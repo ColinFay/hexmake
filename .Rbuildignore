@@ -11,3 +11,4 @@ $run_dev.*
 ^Dockerfile$
 ^/Users/colin/Seafile/documents_colin/R/opensource/hexmas/Dockerfile$
 ^manifest\.json$
+^\.dockerignore$
