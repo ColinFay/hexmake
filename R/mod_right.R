@@ -11,9 +11,9 @@
 #' @rdname mod_right
 #'
 #' @keywords internal
-#' @export 
+#' @export
 #' @importFrom shiny NS tagList tags imageOutput tagAppendAttributes
-mod_right_ui <- function(id){
+mod_right_ui <- function(id) {
   ns <- NS(id)
   tagList(
     tags$div(
@@ -32,15 +32,15 @@ mod_right_ui <- function(id){
 #' @keywords internal
 #' @importFrom shiny renderImage
 #' @importFrom whereami cat_where whereami
-mod_right_server <- function(input, output, session, img){
+mod_right_server <- function(input, output, session, img) {
   ns <- session$ns
-  
-  output$img <- renderImage({
-    cat_where(whereami())
-    watch("render")
-    list(src = img$render())
-  })
 
+  output$img <- renderImage(
+    deleteFile = TRUE,
+    {
+      cat_where(whereami())
+      watch("render")
+      list(src = img$render())
+    }
+  )
 }
-
-
