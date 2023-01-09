@@ -13,9 +13,7 @@
 #' @keywords internal
 #' @export
 #' @importFrom shiny NS tagList
-mod_manip_image_ui <- function(
-  id
-){
+mod_manip_image_ui <- function(id) {
   ns <- NS(id)
   tagList(
     modalDialog(
@@ -59,8 +57,7 @@ mod_manip_image_ui <- function(
                   value = 1
                 )
               )
-            )
-            ,
+            ),
             modalinner(
               summary = "Add Noise",
               checkbox_id = "noise",
@@ -73,8 +70,7 @@ mod_manip_image_ui <- function(
                   choices = magick::noise_types()
                 )
               )
-            )
-            ,
+            ),
             modalinner(
               summary = "Blur",
               checkbox_id = "blur",
@@ -116,8 +112,7 @@ mod_manip_image_ui <- function(
                   value = 0.5
                 )
               )
-            )
-            ,
+            ),
             modalinner(
               summary = "oilpaint",
               checkbox_id = "oilpaint",
@@ -130,8 +125,7 @@ mod_manip_image_ui <- function(
                   value = 1
                 )
               )
-            )
-            ,
+            ),
             modalinner(
               summary = "emboss",
               checkbox_id = "emboss",
@@ -152,8 +146,7 @@ mod_manip_image_ui <- function(
                   value = 0.5
                 )
               )
-            )
-            ,
+            ),
             modalinner(
               summary = "implode",
               checkbox_id = "implode",
@@ -166,14 +159,12 @@ mod_manip_image_ui <- function(
                   value = 1
                 )
               )
-            )
-            ,
+            ),
             modalinner(
               summary = "negate",
               checkbox_id = "negate",
               parent_ns = ns
-            )
-            ,
+            ),
             fluidRow(
               h4("Image Effects")
             ),
@@ -191,7 +182,7 @@ mod_manip_image_ui <- function(
             #     )
             #   )
             # )
-            #,
+            # ,
             modalinner(
               summary = "trim",
               checkbox_id = "trim",
@@ -203,8 +194,7 @@ mod_manip_image_ui <- function(
                   value = 0
                 )
               )
-            )
-            ,
+            ),
             fluidRow(
               tags$details(
                 summary("Flip flop image"),
@@ -224,8 +214,7 @@ mod_manip_image_ui <- function(
                   )
                 )
               )
-            )
-            ,
+            ),
             fluidRow(
               tags$details(
                 summary("Modulate"),
@@ -332,17 +321,17 @@ mod_manip_image_server <- function(
   session,
   img,
   r
-){
+) {
   ns <- session$ns
 
   init("redraw")
 
-  observeEvent( img$subplot , {
+  observeEvent(img$subplot, {
     whereami::cat_where(whereami::whereami())
 
     # r$sub_file is the one shown inside the modal
     # Everytime subplot is changed, it need to be copied
-    if (is.null( r$sub_file )){
+    if (is.null(r$sub_file)) {
       r$sub_file <- fs::file_temp(
         tools::file_ext(
           img$subplot
@@ -355,174 +344,177 @@ mod_manip_image_server <- function(
       r$sub_file,
       TRUE
     )
-
   })
 
 
   output$img <- renderImage(
-    deleteFile = TRUE,{
-    watch("redraw")
-    whereami::cat_where(whereami::whereami())
-    # We draw r$sub_file, which contains either the original image
-    # or the one transformed by magick
-    list(src = r$sub_file)
-  }, deleteFile = FALSE)
+    {
+      watch("redraw")
+      whereami::cat_where(whereami::whereami())
+      # We draw r$sub_file, which contains either the original image
+      # or the one transformed by magick
+      list(src = r$sub_file)
+    },
+    deleteFile = FALSE
+  )
 
-  observeEvent( c(
-    input$times,
-    input$despeckle,
-    input$reducenoise,
-    input$radius_reducenoise,
-    input$blur,
-    input$radius_blur,
-    input$sigma_blur,
-    input$noise,
-    input$noisetype,
-    input$charcoal,
-    input$radius_charcoal,
-    input$sigma_charcoal,
-    input$oilpaint,
-    input$oilpaint_radius,
-    input$emboss,
-    input$emboss_radius,
-    input$emboss_sigma,
-    input$implode,
-    input$implode_factor,
-    input$negate,
-    input$trim,
-    input$trim_fuzz,
-    # input$rotate,
-    # input$rotate_degrees,
-    input$flip,
-    input$flop,
-    input$modulate,
-    input$brightness,
-    input$saturation,
-    input$hue,
-    input$orient
-    #input$deskew
-  ), {
-    whereami::cat_where(whereami::whereami())
-    withProgress(
-      message = "Rendering image"
-      , {
-        # We read sub_file here as a magick object
-        r$sub_file_read <- magick::image_read(img$subplot)
+  observeEvent(
+    c(
+      input$times,
+      input$despeckle,
+      input$reducenoise,
+      input$radius_reducenoise,
+      input$blur,
+      input$radius_blur,
+      input$sigma_blur,
+      input$noise,
+      input$noisetype,
+      input$charcoal,
+      input$radius_charcoal,
+      input$sigma_charcoal,
+      input$oilpaint,
+      input$oilpaint_radius,
+      input$emboss,
+      input$emboss_radius,
+      input$emboss_sigma,
+      input$implode,
+      input$implode_factor,
+      input$negate,
+      input$trim,
+      input$trim_fuzz,
+      # input$rotate,
+      # input$rotate_degrees,
+      input$flip,
+      input$flop,
+      input$modulate,
+      input$brightness,
+      input$saturation,
+      input$hue,
+      input$orient
+      # input$deskew
+    ),
+    {
+      whereami::cat_where(whereami::whereami())
+      withProgress(
+        message = "Rendering image",
+        {
+          # We read sub_file here as a magick object
+          r$sub_file_read <- magick::image_read(img$subplot)
 
-        if (input$despeckle){
-          r$sub_file_read <- magick::image_despeckle(
+          if (input$despeckle) {
+            r$sub_file_read <- magick::image_despeckle(
+              r$sub_file_read,
+              input$times
+            )
+          }
+
+          if (input$reducenoise) {
+            r$sub_file_read <- magick::image_reducenoise(
+              r$sub_file_read,
+              input$radius_reducenoise
+            )
+          }
+          if (input$noise) {
+            r$sub_file_read <- magick::image_noise(
+              r$sub_file_read,
+              input$noisetype
+            )
+          }
+          if (input$blur) {
+            r$sub_file_read <- magick::image_blur(
+              r$sub_file_read,
+              input$radius_blur,
+              input$sigma_blur
+            )
+          }
+          if (input$charcoal) {
+            r$sub_file_read <- magick::image_charcoal(
+              r$sub_file_read,
+              input$radius_charcoal,
+              input$sigma_charcoal
+            )
+          }
+
+          if (input$oilpaint) {
+            r$sub_file_read <- magick::image_oilpaint(
+              r$sub_file_read,
+              input$oilpaint_radius
+            )
+          }
+
+          if (input$emboss) {
+            r$sub_file_read <- magick::image_emboss(
+              r$sub_file_read,
+              input$emboss_radius,
+              input$emboss_sigma
+            )
+          }
+
+          if (input$implode) {
+            r$sub_file_read <- magick::image_implode(
+              r$sub_file_read,
+              input$implode_factor
+            )
+          }
+
+          if (input$negate) {
+            r$sub_file_read <- magick::image_negate(
+              r$sub_file_read
+            )
+          }
+
+          if (input$trim) {
+            r$sub_file_read <- magick::image_trim(
+              r$sub_file_read,
+              input$trim_fuzz
+            )
+          }
+
+          # if (input$rotate){
+          #   r$sub_file_read <- magick::image_rotate(
+          #     r$sub_file_read,
+          #     input$rotate_degrees
+          #   )
+          # }
+          if (input$flip) {
+            r$sub_file_read <- magick::image_flip(
+              r$sub_file_read
+            )
+          }
+          if (input$flop) {
+            r$sub_file_read <- magick::image_flop(
+              r$sub_file_read
+            )
+          }
+          if (input$modulate) {
+            r$sub_file_read <- magick::image_modulate(
+              r$sub_file_read,
+              input$brightness,
+              input$saturation,
+              input$hue
+            )
+          }
+
+          # if (input$deskew){
+          #   r$sub_file_read <- magick::image_deskew(
+          #     r$sub_file_read,
+          #     input$deskew_threshold
+          #   )
+          # }
+
+          magick::image_write(
             r$sub_file_read,
-            input$times
+            r$sub_file
           )
-        }
 
-        if (input$reducenoise){
-          r$sub_file_read <- magick::image_reducenoise(
-            r$sub_file_read,
-            input$radius_reducenoise
-          )
+          assert_different(r, img)
+          trigger("redraw")
         }
-        if (input$noise){
-          r$sub_file_read <- magick::image_noise(
-            r$sub_file_read,
-            input$noisetype
-          )
-        }
-        if (input$blur){
-          r$sub_file_read <- magick::image_blur(
-            r$sub_file_read,
-            input$radius_blur,
-            input$sigma_blur
-          )
-        }
-        if (input$charcoal){
-          r$sub_file_read <- magick::image_charcoal(
-            r$sub_file_read,
-            input$radius_charcoal,
-            input$sigma_charcoal
-          )
-        }
+      )
+    }
+  )
 
-        if (input$oilpaint){
-          r$sub_file_read <- magick::image_oilpaint(
-            r$sub_file_read,
-            input$oilpaint_radius
-          )
-        }
-
-        if (input$emboss){
-          r$sub_file_read <- magick::image_emboss(
-            r$sub_file_read,
-            input$emboss_radius,
-            input$emboss_sigma
-          )
-        }
-
-        if (input$implode){
-          r$sub_file_read <- magick::image_implode(
-            r$sub_file_read,
-            input$implode_factor
-          )
-        }
-
-        if (input$negate){
-          r$sub_file_read <- magick::image_negate(
-            r$sub_file_read
-          )
-        }
-
-        if (input$trim){
-          r$sub_file_read <- magick::image_trim(
-            r$sub_file_read,
-            input$trim_fuzz
-          )
-        }
-
-        # if (input$rotate){
-        #   r$sub_file_read <- magick::image_rotate(
-        #     r$sub_file_read,
-        #     input$rotate_degrees
-        #   )
-        # }
-        if (input$flip){
-          r$sub_file_read <- magick::image_flip(
-            r$sub_file_read
-          )
-        }
-        if (input$flop){
-          r$sub_file_read <- magick::image_flop(
-            r$sub_file_read
-          )
-        }
-        if (input$modulate){
-          r$sub_file_read <- magick::image_modulate(
-            r$sub_file_read,
-            input$brightness,
-            input$saturation,
-            input$hue
-          )
-        }
-
-        # if (input$deskew){
-        #   r$sub_file_read <- magick::image_deskew(
-        #     r$sub_file_read,
-        #     input$deskew_threshold
-        #   )
-        # }
-
-        magick::image_write(
-          r$sub_file_read,
-          r$sub_file
-        )
-
-        assert_different(r, img)
-        trigger("redraw")
-
-      })
-  })
-
-  observeEvent( input$restoreoriginal , {
-
+  observeEvent(input$restoreoriginal, {
     # Restore to original is recopying
     # img$original_image to r$sub_file
     fs::file_copy(
@@ -534,7 +526,7 @@ mod_manip_image_server <- function(
     trigger("redraw")
   })
 
-  observeEvent( input$okokok , {
+  observeEvent(input$okokok, {
     removeModal()
     whereami::cat_where(whereami::whereami())
     for (i in c(
@@ -570,7 +562,7 @@ mod_manip_image_server <- function(
       "hue",
       "orient",
       "deskew"
-    )){
+    )) {
       updateCheckboxInput(
         session,
         inputId = i,
@@ -586,72 +578,72 @@ mod_manip_image_server <- function(
     }
   })
 
-  observeEvent( c(
-    input$restoreoriginal
-  ), {
+  observeEvent(
+    c(
+      input$restoreoriginal
+    ),
+    {
+      whereami::cat_where(whereami::whereami())
+      for (i in c(
+        "times",
+        "despeckle",
+        "reducenoise",
+        "radius_reducenoise",
+        "blur",
+        "radius_blur",
+        "sigma_blur",
+        "noise",
+        "noisetype",
+        "charcoal",
+        "radius_charcoal",
+        "sigma_charcoal",
+        "oilpaint",
+        "oilpaint_radius",
+        "emboss",
+        "emboss_radius",
+        "emboss_sigma",
+        "implode",
+        "implode_factor",
+        "negate",
+        "trim",
+        "trim_fuzz",
+        "rotate",
+        "rotate_degrees",
+        "flip",
+        "flop",
+        "modulate",
+        "brightness",
+        "saturation",
+        "hue",
+        "orient",
+        "deskew"
+      )) {
+        isolate({
+          updateCheckboxInput(
+            session,
+            inputId = i,
+            value = FALSE
+          )
+        })
+      }
 
-    whereami::cat_where(whereami::whereami())
-    for (i in c(
-      "times",
-      "despeckle",
-      "reducenoise",
-      "radius_reducenoise",
-      "blur",
-      "radius_blur",
-      "sigma_blur",
-      "noise",
-      "noisetype",
-      "charcoal",
-      "radius_charcoal",
-      "sigma_charcoal",
-      "oilpaint",
-      "oilpaint_radius",
-      "emboss",
-      "emboss_radius",
-      "emboss_sigma",
-      "implode",
-      "implode_factor",
-      "negate",
-      "trim",
-      "trim_fuzz",
-      "rotate",
-      "rotate_degrees",
-      "flip",
-      "flop",
-      "modulate",
-      "brightness",
-      "saturation",
-      "hue",
-      "orient",
-      "deskew"
-    )){
-      isolate({
-        updateCheckboxInput(
-          session,
-          inputId = i,
-          value = FALSE
+      req(r$sub_file)
+      attempt::attempt({
+        fs::file_copy(
+          img$original_image,
+          r$sub_file,
+          TRUE
         )
       })
+
+      attempt::attempt({
+        fs::file_copy(
+          img$original_image,
+          img$subplot,
+          TRUE
+        )
+      })
+      trigger("render")
     }
-
-    req(r$sub_file)
-    attempt::attempt({
-      fs::file_copy(
-        img$original_image,
-        r$sub_file,
-        TRUE
-      )
-    })
-
-    attempt::attempt({
-      fs::file_copy(
-        img$original_image,
-        img$subplot,
-        TRUE
-      )
-    })
-    trigger("render")
-  })
-
+  )
 }
-
