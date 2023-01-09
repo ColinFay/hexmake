@@ -1444,7 +1444,7 @@
       }
     },
     "golem": {
-      "Source": "repo_IKUYGOLO",
+      "Source": "CRAN",
       "Repository": "https://cran.rstudio.com",
       "GithubRepo": null,
       "GithubUsername": null,
@@ -1453,28 +1453,33 @@
       "description": {
         "Package": "golem",
         "Title": "A Framework for Robust Shiny Applications",
-        "Version": "0.4.0",
-        "Authors@R": "c(\n    person(\"Colin\", \"Fay\", , \"contact@colinfay.me\", role = c(\"cre\", \"aut\"),\n           comment = c(ORCID = \"0000-0001-7343-1846\")),\n    person(\"Vincent\", \"Guyader\", , \"vincent@thinkr.fr\", role = \"aut\",\n           comment = c(ORCID = \"0000-0003-0671-9270\", \"previous maintainer\")),\n    person(\"Sébastien\", \"Rochette\", , \"sebastien@thinkr.fr\", role = \"aut\",\n           comment = c(ORCID = \"0000-0002-1565-9313\")),\n    person(\"Cervan\", \"Girard\", , \"cervan@thinkr.fr\", role = \"aut\",\n           comment = c(ORCID = \"0000-0002-4816-4624\")),\n    person(\"Novica\", \"Nakov\", , \"nnovica@gmail.com\", role = \"ctb\"),\n    person(\"David\", \"Granjon\", , \"dgranjon@ymail.com\", role = \"ctb\"),\n    person(\"Arthur\", \"Bréant\", , \"arthur@thinkr.fr\", role = \"ctb\"),\n    person(\"Antoine\", \"Languillaume\", , \"antoine@thinkr.fr\", role = \"ctb\"),\n    person(\"ThinkR\", role = \"cph\")\n  )",
+        "Version": "0.3.5",
+        "Authors@R": "\n    c(person(given = \"Colin\",\n             family = \"Fay\",\n             role = c(\"cre\", \"aut\"),\n             email = \"contact@colinfay.me\",\n             comment = c(ORCID = \"0000-0001-7343-1846\")),\n      person(given = \"Vincent\",\n             family = \"Guyader\",\n             role = \"aut\",\n             email = \"vincent@thinkr.fr\",\n             comment = c(ORCID = \"0000-0003-0671-9270\", \"previous maintainer\")),\n      person(given = \"Sébastien\",\n             family = \"Rochette\",\n             role = \"aut\",\n             email = \"sebastien@thinkr.fr\",\n             comment = c(ORCID = \"0000-0002-1565-9313\")),\n      person(given = \"Cervan\",\n             family = \"Girard\",\n             role = \"aut\",\n             email = \"cervan@thinkr.fr\",\n             comment = c(ORCID = \"0000-0002-4816-4624\")),\n      person(given = \"Novica\",\n             family = \"Nakov\",\n             role = \"ctb\",\n             email = \"nnovica@gmail.com\"),\n      person(given = \"David\",\n             family = \"Granjon\",\n             role = \"ctb\",\n             email = \"dgranjon@ymail.com\"),\n      person(given = \"Arthur\",\n             family = \"Bréant\",\n             role = \"ctb\",\n             email = \"arthur@thinkr.fr\"),\n      person(given = \"Antoine\",\n             family = \"Languillaume\",\n             role = \"ctb\",\n             email = \"antoine@thinkr.fr\"),                    \n      person(given = \"ThinkR\",\n             role = \"cph\"))",
         "Description": "An opinionated framework for building a production-ready\n    'Shiny' application. This package contains a series of tools for\n    building a robust 'Shiny' application from start to finish.",
         "License": "MIT + file LICENSE",
         "URL": "https://github.com/ThinkR-open/golem",
         "BugReports": "https://github.com/ThinkR-open/golem/issues",
         "Depends": "R (>= 3.0)",
-        "Imports": "attempt (>= 0.3.0), config, here, htmltools, rlang (>= 1.0.0),\nshiny (>= 1.5.0), utils, yaml",
-        "Suggests": "covr, cli (>= 2.0.0), crayon, devtools, dockerfiler (>=\n0.2.0), knitr, pkgload, pkgbuild, pkgdown, processx, purrr,\nrcmdcheck, roxygen2, rmarkdown, rsconnect, spelling, stringr,\ntestthat, tools, withr, attachment (>= 0.2.5), renv, usethis\n(>= 1.6.0), fs, rstudioapi, desc",
+        "Imports": "attempt (>= 0.3.0), cli (>= 2.0.0), config, crayon, desc, fs,\nhere, htmltools, pkgload, roxygen2, rstudioapi, shiny (>=\n1.5.0), usethis (>= 1.6.0), utils, yaml",
+        "Suggests": "rlang, covr, devtools, dockerfiler (>= 0.2.0), knitr,\npkgbuild, pkgdown, processx, purrr, rcmdcheck, rmarkdown,\nrsconnect, spelling, stringr, testthat, tools, withr,\nattachment (>= 0.2.5), renv",
         "VignetteBuilder": "knitr",
         "Config/testthat/edition": "3",
         "Encoding": "UTF-8",
         "Language": "en-US",
-        "Roxygen": "list(markdown = TRUE)",
-        "RoxygenNote": "7.2.2",
-        "RemoteType": "local",
-        "RemoteUrl": "/Users/colinfay/git/github/thinkr-open/golem",
+        "RoxygenNote": "7.2.1",
         "NeedsCompilation": "no",
-        "Packaged": "2022-12-14 15:48:24 UTC; colinfay",
+        "Packaged": "2022-10-18 08:30:38 UTC; colin",
         "Author": "Colin Fay [cre, aut] (<https://orcid.org/0000-0001-7343-1846>),\n  Vincent Guyader [aut] (<https://orcid.org/0000-0003-0671-9270>,\n    previous maintainer),\n  Sébastien Rochette [aut] (<https://orcid.org/0000-0002-1565-9313>),\n  Cervan Girard [aut] (<https://orcid.org/0000-0002-4816-4624>),\n  Novica Nakov [ctb],\n  David Granjon [ctb],\n  Arthur Bréant [ctb],\n  Antoine Languillaume [ctb],\n  ThinkR [cph]",
         "Maintainer": "Colin Fay <contact@colinfay.me>",
-        "Built": "R 4.2.2; ; 2022-12-14 15:48:24 UTC; unix"
+        "Repository": "CRAN",
+        "Date/Publication": "2022-10-18 09:52:35 UTC",
+        "Built": "R 4.2.0; ; 2022-10-19 13:18:04 UTC; unix",
+        "RemoteType": "standard",
+        "RemotePkgRef": "golem",
+        "RemoteRef": "golem",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemotePkgPlatform": "x86_64-apple-darwin17.0",
+        "RemoteSha": "0.3.5"
       }
     },
     "gridGraphics": {
@@ -2650,7 +2655,13 @@
         "Repository": "CRAN",
         "Date/Publication": "2022-12-20 15:10:02 UTC",
         "Built": "R 4.2.0; x86_64-apple-darwin17.0; 2022-12-21 13:01:09 UTC; unix",
-        "Archs": "purrr.so.dSYM"
+        "Archs": "purrr.so.dSYM",
+        "RemoteType": "standard",
+        "RemotePkgRef": "purrr",
+        "RemoteRef": "purrr",
+        "RemoteRepos": "https://cran.rstudio.com",
+        "RemotePkgPlatform": "x86_64-apple-darwin17.0",
+        "RemoteSha": "1.0.0"
       }
     },
     "rappdirs": {
