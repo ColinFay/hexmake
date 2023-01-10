@@ -5,4 +5,5 @@
 library(golem)
 pkgload::load_all()
 options("golem.app.prod" = TRUE)
+print(Sys.getenv())
 run_app(with_mongo = TRUE) # add parameters here (if any)
